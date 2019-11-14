@@ -125,7 +125,7 @@
         // Testimonial Carousel End
 
 
-        // Video Bg JS 
+        // Video Bg JS
         $('#mobileapp-video-bg').YTPlayer({
             fitToBackground: true,
             videoURL: 'm5_AKjDdqaU',
@@ -162,16 +162,16 @@
             animationDuration: 20000,
             slides: [
                 {
-                    src: 'assets/img/slider-img/slider-img-1.jpg'
+                    src: 'img/slider-img/slider-img-1.jpg'
                 },
                 {
-                    src: 'assets/img/slider-img/slider-img-2.jpg'
+                    src: 'img/slider-img/slider-img-2.jpg'
                 },
                 {
-                    src: 'assets/img/slider-img/slider-img-3.jpg'
+                    src: 'img/slider-img/slider-img-3.jpg'
                 },
                 {
-                    src: 'assets/img/slider-img/slider-img-4.jpg'
+                    src: 'img/slider-img/slider-img-4.jpg'
                 }
             ]
         }); //Home Page Two Slideshow
