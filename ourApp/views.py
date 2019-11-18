@@ -4,10 +4,10 @@ from .models import Car
 # Create your views here.
 
 def index(request):
-    return render(request,'ourApp/about.html')
+    return render(request,'ourApp/index2.html')
 
 def about(request):
-    return render(request,'ourApp/index.html')
+    return render(request,'ourApp/about.html')
 
 def get_by_id(request, car_id):
     return HttpResponse(Car.objects.get(id=car_id))

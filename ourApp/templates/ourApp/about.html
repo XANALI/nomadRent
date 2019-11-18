@@ -102,7 +102,7 @@
                 <div class="row">
                     <!--== Logo Start ==-->
                     <div class="col-lg-4">
-                        <a href="index.html" class="logo">
+                        <a href="{% url 'index'%}" class="logo">
                             <img src="{% static 'ourApp/img/logo.png' %}" alt="JSOFT">
                         </a>
                     </div>
@@ -112,7 +112,7 @@
                     <div class="col-lg-8 d-none d-xl-block">
                         <nav class="mainmenu alignright">
                             <ul>
-                                <li><a href="{% url 'about'%}">Home</a>
+                                <li><a href="{% url 'index'%}">Home</a>
                                 </li>
                                 <li class="active"><a href="#">About</a></li>
                                 <li><a href="services.html">services</a></li>
