@@ -7,5 +7,5 @@ urlpatterns = [
     path('<int:car_id>/', views.get_by_id, name="detail"),
     path('services/',views.services,name="services"),
     path('cars/',views.cars,name="cars-without-sidebar.html"),
-    path('contact',views.contact,name="contact"),
+    path('contact/',views.contact,name="contact"),
 ]
