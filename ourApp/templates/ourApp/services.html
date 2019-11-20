@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--=== Favicon ===-->
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    {% load staticfiles %}
+    <link rel="shortcut icon" href="{% static 'ourApp/img/Kazakhstan.ico' %}" type="image/x-icon" />
 
     <title>Nomad Rent - Car Rental Service</title>
 
@@ -30,6 +31,18 @@
     <link href="assets/css/responsive.css" rel="stylesheet">
 
 
+    <link rel="stylesheet" href="{% static 'ourApp/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'ourApp/css/font-awesome.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'ourApp/css/reset.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'ourApp/css/responsive.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'ourApp/css/plugins/animate.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'ourApp/css/plugins/gijgo.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'ourApp/css/plugins/magnific-popup.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'ourApp/css/plugins/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'ourApp/css/plugins/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'ourApp/css/style.css' %}" type="text/css">
+
+
     <!--[if lt IE 9]>
         <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -42,7 +55,7 @@
     <div class="preloader">
         <div class="preloader-spinner">
             <div class="loader-content">
-                <img src="assets/img/preloader.gif" alt="JSOFT">
+                <img src="{% static 'ourApp/img/preloader.gif'%}" alt="JSOFT">
             </div>
         </div>
     </div>
@@ -90,8 +103,8 @@
                 <div class="row">
                     <!--== Logo Start ==-->
                     <div class="col-lg-4">
-                        <a href="index.html" class="logo">
-                            <img src="assets/img/logo.png" alt="JSOFT">
+                        <a href="{% url 'index'%}" class="logo">
+                            <img src="{% static 'ourApp/img/logo.png'%}" alt="JSOFT">
                         </a>
                     </div>
                     <!--== Logo End ==-->
@@ -100,37 +113,12 @@
                     <div class="col-lg-8 d-none d-xl-block">
                         <nav class="mainmenu alignright">
                             <ul>
-                                <li><a href="index2.html">Home</a>
+                                <li><a href="{% url 'index'%}">Home</a>
                                 </li>
-                                <li><a href="about.html">About</a></li>
+                                <li><a href="{% url 'about'%}">About</a></li>
                                 <li class="active"><a href="services.html">services</a></li>
-                                <li><a href="#">Cars</a>
-                                    <ul>
-                                        <li><a href="car-left-sidebar.html">Car Left Sidebar</a></li>
-                                        <li><a href="car-right-sidebar.html">Car Right Sidebar</a></li>
-                                        <li><a href="car-without-sidebar.html">Car Without Sidebar</a></li>
-                                        <li><a href="car-details.html">Car Details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="index.html">Pages</a>
-                                    <ul>
-                                        <li><a href="package.html">Pricing</a></li>
-                                        <li><a href="driver.html">Driver</a></li>
-                                        <li><a href="faq.html">FAQ</a></li>
-                                        <li><a href="gallery.html">Gallery</a></li>
-                                        <li><a href="help-desk.html">Help Desk</a></li>
-                                        <li><a href="login.html">Log In</a></li>
-                                        <li><a href="register.html">Register</a></li>
-                                        <li><a href="404.html">404</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Blog</a>
-                                    <ul>
-                                        <li><a href="article.html">Blog Page</a></li>
-                                        <li><a href="article-details.html">Blog Details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="{% url 'cars-without-sidebar.html'%}">Cars</a></li>
+                                <li><a href="{% url 'contact' %}">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -151,7 +139,9 @@
                     <div class="section-title  text-center">
                         <h2>Our Services</h2>
                         <span class="title-line"><i class="fa fa-car"></i></span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <p>If you are travelling to Kazakhstan for the ultimate driving holiday, NomadRent has the right vehicle for you at the best price.</p>
+						            <p>NomadRent offers a wide selection of rental vehicles including; small economy hatchbacks that are perfect for around town or short trips, mid-size and full size hatchbacks and sedans, station wagons that will be perfect for your driving holiday.</p>
+						            <p>NomadRent has rental locations at Almaty International Airport, Nur-Sultan International Airport and Shymkent International Airport to service all international arrivals. We also operate car rental locations at all big cities of our Country. </p>
                     </div>
                 </div>
                 <!-- Page Title End -->
@@ -170,8 +160,8 @@
                         <div class="service-item-thumb ser-thumb-bg-1"></div>
                         <div class="service-item-content">
                             <h3>RENTAL CAR</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicingedsedsis elited. Necessitatibus aliquid, architecto ullam esdefugiat quasi! Doloribus eaque quam soluta quae porro reprehenderit edsconsequuntur hic ducimus consequatur, dicta officia excepturi quos, quis voluptatum optio deserunt sit. Totam ab dolorum at, labore quisquamn earum, magni reiciendis officiis dolores nemo nostrum perspiciatis!</p>
-                        </div>
+                            <p>A car rental, hire car, or car hire agency is a company that rents automobiles for short periods of time, generally ranging from a few hours to a few weeks. It is often organised with numerous local branches (which allow a user to return a vehicle to a different location), and primarily located near airports or busy city areas and often complemented by a website allowing online reservations.</p>
+                            </div>
                     </div>
                     <!-- Single Services End -->
 
@@ -222,8 +212,8 @@
                         <div class="single-partner">
                             <div class="display-table">
                                 <div class="display-table-cell">
-                                    <img src="assets/img/partner/partner-logo-1.png" alt="JSOFT">
-                                </div>
+                                  <img src="{% static 'ourApp/img/partner/partner-logo-1.png'%}" alt="JSOFT">
+                              </div>
                             </div>
                         </div>
                         <!-- Single Partner End -->
@@ -232,8 +222,8 @@
                         <div class="single-partner">
                             <div class="display-table">
                                 <div class="display-table-cell">
-                                    <img src="assets/img/partner/partner-logo-2.png" alt="JSOFT">
-                                </div>
+                                  <img src="{% static 'ourApp/img/partner/partner-logo-2.png'%}" alt="JSOFT">
+                              </div>
                             </div>
                         </div>
                         <!-- Single Partner End -->
@@ -242,8 +232,8 @@
                         <div class="single-partner">
                             <div class="display-table">
                                 <div class="display-table-cell">
-                                    <img src="assets/img/partner/partner-logo-3.png" alt="JSOFT">
-                                </div>
+                                  <img src="{% static 'ourApp/img/partner/partner-logo-3.png'%}" alt="JSOFT">
+                              </div>
                             </div>
                         </div>
                         <!-- Single Partner End -->
@@ -252,8 +242,8 @@
                         <div class="single-partner">
                             <div class="display-table">
                                 <div class="display-table-cell">
-                                    <img src="assets/img/partner/partner-logo-4.png" alt="JSOFT">
-                                </div>
+                                  <img src="{% static 'ourApp/img/partner/partner-logo-4.png'%}" alt="JSOFT">
+                              </div>
                             </div>
                         </div>
                         <!-- Single Partner End -->
@@ -262,8 +252,8 @@
                         <div class="single-partner">
                             <div class="display-table">
                                 <div class="display-table-cell">
-                                    <img src="assets/img/partner/partner-logo-5.png" alt="JSOFT">
-                                </div>
+                                  <img src="{% static 'ourApp/img/partner/partner-logo-5.png'%}" alt="JSOFT">
+                              </div>
                             </div>
                         </div>
                         <!-- Single Partner End -->
@@ -272,8 +262,8 @@
                         <div class="single-partner">
                             <div class="display-table">
                                 <div class="display-table-cell">
-                                    <img src="assets/img/partner/partner-logo-1.png" alt="JSOFT">
-                                </div>
+                                  <img src="{% static 'ourApp/img/partner/partner-logo-1.png'%}" alt="JSOFT">
+                              </div>
                             </div>
                         </div>
                         <!-- Single Partner End -->
@@ -282,8 +272,8 @@
                         <div class="single-partner">
                             <div class="display-table">
                                 <div class="display-table-cell">
-                                    <img src="assets/img/partner/partner-logo-4.png" alt="JSOFT">
-                                </div>
+                                  <img src="{% static 'ourApp/img/partner/partner-logo-4.png'%}" alt="JSOFT">
+                              </div>
                             </div>
                         </div>
                         <!-- Single Partner End -->
@@ -317,8 +307,8 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis totam obcaecati impedit, at autem repellat vel magni architecto veritatis sed.</p>
                             <h3>Vongchong Smith</h3>
                             <div class="client-logo">
-                                <img src="assets/img/client/client-pic-1.jpg" alt="JSOFT">
-                            </div>
+                              <img src="{% static 'ourApp/img/client/client-pic-2.jpg'%}" alt="JSOFT">
+                        </div>
                         </div>
                         <!--== Single Testimoial End ==-->
 
@@ -327,7 +317,7 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis totam obcaecati impedit, at autem repellat vel magni architecto veritatis sed.</p>
                             <h3>Amader Tuni</h3>
                             <div class="client-logo">
-                                <img src="assets/img/client/client-pic-3.jpg" alt="JSOFT">
+                              <img src="{% static 'ourApp/img/client/client-pic-1.jpg'%}" alt="JSOFT">
                             </div>
                         </div>
                         <!--== Single Testimoial End ==-->
@@ -337,8 +327,8 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis totam obcaecati impedit, at autem repellat vel magni architecto veritatis sed.</p>
                             <h3>Atex Tuntuni Smith</h3>
                             <div class="client-logo">
-                                <img src="assets/img/client/client-pic-2.jpg" alt="JSOFT">
-                            </div>
+                              <img src="{% static 'ourApp/img/client/client-pic-3.jpg'%}" alt="JSOFT">
+                          </div>
                         </div>
                         <!--== Single Testimoial End ==-->
                     </div>
@@ -355,11 +345,14 @@
             <div class="container">
                 <div class="row">
                     <!-- Single Footer Widget Start -->
+                    <div class="col-lg-2 col-md-6">
+
+                    </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="single-footer-widget">
                             <h2>About Us</h2>
                             <div class="widget-body">
-                                <img src="assets/img/logo.png" alt="JSOFT">
+                                <img src="{% static 'ourApp/img/logo.png'%}" alt="JSOFT">
                                 <p>Lorem ipsum dolored is a sit ameted consectetur adipisicing elit. Nobis magni assumenda distinctio debitis, eum fuga fugiat error reiciendis.</p>
 
                                 <div class="newsletter-area">
@@ -375,38 +368,8 @@
                     <!-- Single Footer Widget End -->
 
                     <!-- Single Footer Widget Start -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-footer-widget">
-                            <h2>Recent Posts</h2>
-                            <div class="widget-body">
-                                <ul class="recent-post">
-                                    <li>
-                                        <a href="#">
-                                           Hello Bangladesh! 
-                                           <i class="fa fa-long-arrow-right"></i>
-                                       </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                          Lorem ipsum dolor sit amet
-                                           <i class="fa fa-long-arrow-right"></i>
-                                       </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                           Hello Bangladesh! 
-                                           <i class="fa fa-long-arrow-right"></i>
-                                       </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            consectetur adipisicing elit?
-                                           <i class="fa fa-long-arrow-right"></i>
-                                       </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div class="col-lg-1 col-md-6">
+
                     </div>
                     <!-- Single Footer Widget End -->
 
@@ -418,11 +381,11 @@
                                 <p>Lorem ipsum doloer sited amet, consectetur adipisicing elit. nibh auguea, scelerisque sed</p>
 
                                 <ul class="get-touch">
-                                    <li><i class="fa fa-map-marker"></i> 800/8, Kazipara, Dhaka</li>
-                                    <li><i class="fa fa-mobile"></i> +880 01 86 25 72 43</li>
-                                    <li><i class="fa fa-envelope"></i> kazukamdu83@gmail.com</li>
+                                    <li><i class="fa fa-map-marker"></i> 34/1, IITU, Almaty</li>
+                                    <li><i class="fa fa-mobile"></i> +7 (727) 320 0000</li>
+                                    <li><i class="fa fa-envelope"></i> info@iitu.kz</li>
                                 </ul>
-                                <a href="https://goo.gl/maps/b5mt45MCaPB2" class="map-show" target="_blank">Show Location</a>
+                                <a href=https://bit.ly/2K10MuC class="map-show" target="_blank">Show Location</a>
                             </div>
                         </div>
                     </div>
@@ -438,7 +401,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="fa fa-heart-o" aria-hidden="true"></i>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                     </div>
                 </div>
@@ -446,45 +409,46 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </div>
         <!-- Footer Bottom End -->
     </section>
-    <!--== Footer Area End ==-->
+  <!--== Footer Area End ==-->
 
-    <!--== Scroll Top Area Start ==-->
-    <div class="scroll-top">
-        <img src="assets/img/scroll-top.png" alt="JSOFT">
-    </div>
-    <!--== Scroll Top Area End ==-->
+  <!--== Scroll Top Area Start ==-->
+  <div class="scroll-top">
+      <img src="{% static 'ourApp/img/scroll-top.png'%}" alt="JSOFT">
+  </div>
+  <!--== Scroll Top Area End ==-->
 
-    <!--=======================Javascript============================-->
-    <!--=== Jquery Min Js ===-->
-    <script src="assets/js/jquery-3.2.1.min.js"></script>
-    <!--=== Jquery Migrate Min Js ===-->
-    <script src="assets/js/jquery-migrate.min.js"></script>
-    <!--=== Popper Min Js ===-->
-    <script src="assets/js/popper.min.js"></script>
-    <!--=== Bootstrap Min Js ===-->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <!--=== Gijgo Min Js ===-->
-    <script src="assets/js/plugins/gijgo.js"></script>
-    <!--=== Vegas Min Js ===-->
-    <script src="assets/js/plugins/vegas.min.js"></script>
-    <!--=== Isotope Min Js ===-->
-    <script src="assets/js/plugins/isotope.min.js"></script>
-    <!--=== Owl Caousel Min Js ===-->
-    <script src="assets/js/plugins/owl.carousel.min.js"></script>
-    <!--=== Waypoint Min Js ===-->
-    <script src="assets/js/plugins/waypoints.min.js"></script>
-    <!--=== CounTotop Min Js ===-->
-    <script src="assets/js/plugins/counterup.min.js"></script>
-    <!--=== YtPlayer Min Js ===-->
-    <script src="assets/js/plugins/mb.YTPlayer.js"></script>
-    <!--=== Magnific Popup Min Js ===-->
-    <script src="assets/js/plugins/magnific-popup.min.js"></script>
-    <!--=== Slicknav Min Js ===-->
-    <script src="assets/js/plugins/slicknav.min.js"></script>
+  <!--=======================Javascript============================-->
+  <!--=== Jquery Min Js ===-->
+  <link rel="stylesheet" href="{% static 'ourApp/css/bootstrap.min.css' %}" type="text/css">
 
-    <!--=== Mian Js ===-->
-    <script src="assets/js/main.js"></script>
+  <script src="{% static 'ourApp/js/jquery-3.2.1.min.js' %}"></script>
+  <!--=== Jquery Migrate Min Js ===-->
+  <script src="{% static 'ourApp/js/jquery-migrate.min.js' %}"></script>
+  <!--=== Popper Min Js ===-->
+  <script src="{% static 'ourApp/js/popper.min.js' %}"></script>
+  <!--=== Bootstrap Min Js ===-->
+  <script src="{% static 'ourApp/js/bootstrap.min.js' %}"></script>
+  <!--=== Gijgo Min Js ===-->
+  <script src="{% static 'ourApp/js/plugins/gijgo.js' %}"></script>
+  <!--=== Vegas Min Js ===-->
+  <script src="{% static 'ourApp/js/plugins/vegas.min.js' %}"></script>
+  <!--=== Isotope Min Js ===-->
+  <script src="{% static 'ourApp/js/plugins/isotope.min.js' %}"></script>
+  <!--=== Owl Caousel Min Js ===-->
+  <script src="{% static 'ourApp/js/plugins/owl.carousel.min.js' %}"></script>
+  <!--=== Waypoint Min Js ===-->
+  <script src="{% static 'ourApp/js/plugins/waypoints.min.js' %}"></script>
+  <!--=== CounTotop Min Js ===-->
+  <script src="{% static 'ourApp/js/plugins/counterup.min.js' %}"></script>
+  <!--=== YtPlayer Min Js ===-->
+  <script src="{% static 'ourApp/js/plugins/mb.YTPlayer.js' %}"></script>
+  <!--=== Magnific Popup Min Js ===-->
+  <script src="{% static 'ourApp/js/plugins/magnific-popup.min.js' %}"></script>
+  <!--=== Slicknav Min Js ===-->
+  <script src="{% static 'ourApp/js/plugins/slicknav.min.js' %}"></script>
+
+  <!--=== Mian Js ===-->
+  <script src="{% static 'ourApp/js/main.js' %}"></script>
 
 </body>
-
 </html>

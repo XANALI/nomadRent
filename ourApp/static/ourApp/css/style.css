@@ -2652,15 +2652,15 @@ body,
 }
 
 .ser-thumb-bg-2 {
-	background-image: url(assets/img/car/car-2.jpg);
+	background-image: url(../img/car/car-2.jpg);
 }
 
 .ser-thumb-bg-3 {
-	background-image: url(assets/img/car/car-3.jpg);
+	background-image: url(../img/car/car-3.jpg);
 }
 
 .ser-thumb-bg-4 {
-	background-image: url(assets/img/car/car-5.jpg);
+	background-image: url(../img/car/car-5.jpg);
 }
 
 .single-service-item {
