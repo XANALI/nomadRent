@@ -55,7 +55,7 @@
     <div class="preloader">
         <div class="preloader-spinner">
             <div class="loader-content">
-                <img src="assets/img/preloader.gif" alt="JSOFT">
+                <img src="{% static 'ourApp/img/preloader.gif' %}" alt="JSOFT">
             </div>
         </div>
     </div>
@@ -103,8 +103,8 @@
                 <div class="row">
                     <!--== Logo Start ==-->
                     <div class="col-lg-4">
-                        <a href="index2.html" class="logo">
-                            <img src="assets/img/logo.png" alt="JSOFT">
+                        <a href="{% url 'index'%}" class="logo">
+                            <img src="{% static 'ourApp/img/logo.png' %}" alt="JSOFT">
                         </a>
                     </div>
                     <!--== Logo End ==-->
@@ -113,14 +113,13 @@
                     <div class="col-lg-8 d-none d-xl-block">
                         <nav class="mainmenu alignright">
                             <ul>
-                                <li class="active"><a href="index2.html">Home</a>
+                                <li class="active"><a href="{% url 'index'%}">Home</a>
 
                                 </li>
                                 <li><a href="{% url 'about'%}">About</a></li>
-                                <li><a href="services.html">services</a></li>
-                                <li><a href="car-without-sidebar.html">Cars</a>
-                                </li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="{% url 'services'%}">services</a></li>
+                                <li><a href="{% url 'cars-without-sidebar.html'%}">Cars</a></li>
+                                <li><a href="{% url 'contact' %}">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -144,7 +143,7 @@
                                 <p>FOR AS LOW AS $10 A DAY PLUS 15% DISCOUNT <br> FOR OUR RETURNING CUSTOMERS</p>
 
                                 <div class="book-ur-car">
-                                    <form action="index2.html">
+                                    <form action="{% url 'index'%}">
                                         <div class="pick-location bookinput-item">
                                             <select class="custom-select">
                                               <option selected>Pick Location</option>
@@ -217,7 +216,7 @@
                 <!-- About Video Start -->
                 <div class="col-lg-6">
                     <div class="about-image">
-                        <img src="assets/img/home-2-about.png" alt="JSOFT">
+                        <img src="{% static 'ourApp/img/home-2-about.png'%}" alt="JSOFT">
                     </div>
                 </div>
                 <!-- About Video End -->
@@ -272,7 +271,7 @@
                         <div class="single-partner">
                             <div class="display-table">
                                 <div class="display-table-cell">
-                                    <img src="assets/img/partner/partner-logo-1.png" alt="JSOFT">
+                                    <img src="{% static 'ourApp/img/partner/partner-logo-1.png'%}" alt="JSOFT">
                                 </div>
                             </div>
                         </div>
@@ -282,7 +281,7 @@
                         <div class="single-partner">
                             <div class="display-table">
                                 <div class="display-table-cell">
-                                    <img src="assets/img/partner/partner-logo-2.png" alt="JSOFT">
+                                    <img src="{% static 'ourApp/img/partner/partner-logo-2.png'%}" alt="JSOFT">
                                 </div>
                             </div>
                         </div>
@@ -292,7 +291,7 @@
                         <div class="single-partner">
                             <div class="display-table">
                                 <div class="display-table-cell">
-                                    <img src="assets/img/partner/partner-logo-3.png" alt="JSOFT">
+                                    <img src="{% static 'ourApp/img/partner/partner-logo-3.png'%}" alt="JSOFT">
                                 </div>
                             </div>
                         </div>
@@ -302,7 +301,7 @@
                         <div class="single-partner">
                             <div class="display-table">
                                 <div class="display-table-cell">
-                                    <img src="assets/img/partner/partner-logo-4.png" alt="JSOFT">
+                                    <img src="{% static 'ourApp/img/partner/partner-logo-4.png'%} " alt="JSOFT">
                                 </div>
                             </div>
                         </div>
@@ -312,7 +311,7 @@
                         <div class="single-partner">
                             <div class="display-table">
                                 <div class="display-table-cell">
-                                    <img src="assets/img/partner/partner-logo-5.png" alt="JSOFT">
+                                    <img src="{% static 'ourApp/img/partner/partner-logo-5.png'%}" alt="JSOFT">
                                 </div>
                             </div>
                         </div>
@@ -322,7 +321,7 @@
                         <div class="single-partner">
                             <div class="display-table">
                                 <div class="display-table-cell">
-                                    <img src="assets/img/partner/partner-logo-1.png" alt="JSOFT">
+                                    <img src="{% static 'ourApp/img/partner/partner-logo-1.png'%}" alt="JSOFT">
                                 </div>
                             </div>
                         </div>
@@ -332,7 +331,7 @@
                         <div class="single-partner">
                             <div class="display-table">
                                 <div class="display-table-cell">
-                                    <img src="assets/img/partner/partner-logo-4.png" alt="JSOFT">
+                                    <img src="{% static 'ourApp/img/partner/partner-logo-4.png'%}" alt="JSOFT">
                                 </div>
                             </div>
                         </div>

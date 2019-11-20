@@ -11,3 +11,12 @@ def about(request):
 
 def get_by_id(request, car_id):
     return HttpResponse(Car.objects.get(id=car_id))
+
+def services(request):
+    return render(request,'ourApp/services.html')
+
+def cars(request):
+    return render(request,'ourApp/car-without-sidebar.html')
+
+def contact(request):
+    return render(request,'ourApp/car-without-sidebar.html')
