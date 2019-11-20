@@ -2243,19 +2243,19 @@ body,
 }
 
 .car-thumb-1 {
-	background-image: url(assets/img/car/car-1.jpg);
+	background-image: url(../img/car/car-1.jpg);
 }
 
 .car-thumb-2 {
-	background-image: url(assets/img/car/car-2.jpg);
+	background-image: url(../img/car/car-2.jpg);
 }
 
 .car-thumb-3 {
-	background-image: url(assets/img/car/car-3.jpg);
+	background-image: url(../img/car/car-3.jpg);
 }
 
 .car-thumb-4 {
-	background-image: url(assets/img/car/car-4.jpg);
+	background-image: url(../img/car/car-4.jpg);
 }
 
 .car-list-thumb {
