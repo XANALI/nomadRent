@@ -19,4 +19,4 @@ def cars(request):
     return render(request,'ourApp/car-without-sidebar.html')
 
 def contact(request):
-    return render(request,'ourApp/car-without-sidebar.html')
+    return render(request,'ourApp/contact.html')
