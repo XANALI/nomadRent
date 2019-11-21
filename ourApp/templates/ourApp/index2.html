@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="{% static 'ourApp/css/plugins/owl.carousel.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'ourApp/css/plugins/slicknav.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'ourApp/css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'ourApp/css/plugins/vegas.min.css' %}" type="text/css">
 
     <!--[if lt IE 9]>
         <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -118,7 +119,7 @@
                                 </li>
                                 <li><a href="{% url 'about'%}">About</a></li>
                                 <li><a href="{% url 'services'%}">services</a></li>
-                                <li><a href="{% url 'cars-without-sidebar.html'%}">Cars</a></li>
+                                <li><a href="{% url 'cars-without-sidebar'%}">Cars</a></li>
                                 <li><a href="{% url 'contact' %}">Contact</a></li>
                             </ul>
                         </nav>
@@ -515,8 +516,8 @@
                                     <div class="col-lg-6 col-md-6 con suv mpv">
                                         <div class="single-popular-car">
                                             <div class="p-car-thumbnails">
-                                                <a class="car-hover" href="assets/img/car/car-1.jpg">
-                                                    <img src="assets/img/car/car-1.jpg" alt="JSOFT">
+                                                <a class="car-hover" href="ourApp/img/car/car-1.jpg">
+                                                    <img src="{% static 'ourApp/img/car/car-1.jpg' %}" alt="JSOFT">
                                                 </a>
                                             </div>
 
@@ -542,8 +543,8 @@
                                     <div class="col-lg-6 col-md-6 hat sedan">
                                         <div class="single-popular-car">
                                             <div class="p-car-thumbnails">
-                                                <a class="car-hover" href="assets/img/car/car-2.jpg">
-                                                    <img src="assets/img/car/car-2.jpg" alt="JSOFT">
+                                                <a class="car-hover" href="ourApp/img/car/car-2">
+                                                    <img src="{% static 'ourApp/img/car/car-2.jpg' %}" alt="JSOFT">
                                                 </a>
                                             </div>
 
@@ -569,8 +570,8 @@
                                     <div class="col-lg-6 col-md-6 suv con mpv">
                                         <div class="single-popular-car">
                                             <div class="p-car-thumbnails">
-                                                <a class="car-hover" href="assets/img/car/car-3.jpg">
-                                                   <img src="assets/img/car/car-3.jpg" alt="JSOFT">
+                                                <a class="car-hover" href="ourApp/img/car/car-3.jpg">
+                                                   <img src="{% static 'ourApp/img/car/car-3.jpg' %}" alt="JSOFT">
                                                 </a>
                                             </div>
 
@@ -596,8 +597,8 @@
                                     <div class="col-lg-6 col-md-6 con hat">
                                         <div class="single-popular-car">
                                             <div class="p-car-thumbnails">
-                                                <a class="car-hover" href="assets/img/car/car-4.jpg">
-                                                    <img src="assets/img/car/car-4.jpg" alt="JSOFT">
+                                                <a class="car-hover" href="ourApp/img/car/car-4.jpg">
+                                                    <img src="{% static 'ourApp/img/car/car-4.jpg' %}" alt="JSOFT">
                                                 </a>
                                             </div>
 
@@ -735,7 +736,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link active" id="tab_item_1" data-toggle="tab" href="#team_member_1" role="tab" aria-selected="true">
                                                 <div class="team-mem-icon">
-                                                    <img src="assets/img/team/team-mem-thumb-1.png" alt="JSOFT">
+                                                    <img src="{% static 'ourApp/img/team/team-mem-thumb-1.png'%}" alt="JSOFT">
                                                 </div>
                                                 <h5>Sarsen Zhalgas</h5>
                                             </a>
@@ -743,7 +744,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link" id="tab_item_2" data-toggle="tab" href="#team_member_2" role="tab" aria-selected="true">
                                                 <div class="team-mem-icon">
-                                                    <img src="assets/img/team/team-mem-thumb-3.png" alt="JSOFT">
+                                                    <img src="{% static 'ourApp/img/team/team-mem-thumb-3.png'%}" alt="JSOFT">
                                                 </div>
                                                 <h5>Ibraimov Alisher</h5>
                                             </a>
@@ -751,7 +752,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link" id="tab_item_3" data-toggle="tab" href="#team_member_3" role="tab" aria-selected="true">
                                                 <div class="team-mem-icon">
-                                                    <img src="assets/img/team/team-mem-thumb-2.png" alt="JSOFT">
+                                                    <img src="{% static 'ourApp/img/team/team-mem-thumb-2.png'%}" alt="JSOFT">
                                                 </div>
                                                 <h5>Alex Tuntuni</h5>
                                             </a>
@@ -759,7 +760,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link" id="tab_item_4" data-toggle="tab" href="#team_member_4" role="tab" aria-selected="true">
                                                 <div class="team-mem-icon">
-                                                    <img src="assets/img/team/team-mem-thumb-4.png" alt="JSOFT">
+                                                    <img src="{% static 'ourApp/img/team/team-mem-thumb-4.png'%}" alt="JSOFT">
                                                 </div>
                                                 <h5>Any Anderssen</h5>
                                             </a>
@@ -777,7 +778,7 @@
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="team-member-pro-pic">
-                                                    <img src="assets/img/team/team-mem-1.png" alt="JSOFT">
+                                                    <img src="{% static 'ourApp/img/team/team-mem-1.png' %}" alt="JSOFT">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6">
@@ -804,7 +805,7 @@
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="team-member-pro-pic">
-                                                    <img src="assets/img/team/team-mem-3.png" alt="JSOFT">
+                                                    <img src="{% static 'ourApp/img/team/team-mem-3.png'%}" alt="JSOFT">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6">
@@ -831,7 +832,7 @@
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="team-member-pro-pic">
-                                                    <img src="assets/img/team/team-mem-2.png" alt="JSOFT">
+                                                    <img src="{% static 'ourApp/img/team/team-mem-2.png'%}" alt="JSOFT">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6">
@@ -858,7 +859,7 @@
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="team-member-pro-pic">
-                                                    <img src="assets/img/team/team-mem-4.png" alt="JSOFT">
+                                                    <img src="{% static 'ourApp/img/team/team-mem-4.png'%}" alt="JSOFT">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6">
@@ -923,11 +924,11 @@
                         <div class="single-footer-widget">
                             <h2>About Us</h2>
                             <div class="widget-body">
-                                <img src="assets/img/logo.png" alt="JSOFT">
+                                <img src="{% static 'ourApp/img/logo.png'%}" alt="JSOFT">
                                 <p>Lorem ipsum dolored is a sit ameted consectetur adipisicing elit. Nobis magni assumenda distinctio debitis, eum fuga fugiat error reiciendis.</p>
 
                                 <div class="newsletter-area">
-                                    <form action="index.html">
+                                    <form action="{% url 'index' %}">
                                         <input type="email" placeholder="Subscribe Our Newsletter">
                                         <button type="submit" class="newsletter-btn"><i class="fa fa-send"></i></button>
                                     </form>
