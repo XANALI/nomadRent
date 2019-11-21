@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--=== Favicon ===-->
     {% load staticfiles %}
+    {% load crispy_forms_tags %}
     <link rel="shortcut icon" href="{% static 'ourApp/img/Kazakhstan.ico' %}" type="image/x-icon" />
 
     <title>Cardoor - Car Rental HTML Template</title>
@@ -98,7 +99,7 @@
                                 <li><a href="about.html">About</a></li>
                                 <li><a href="services.html">Services</a></li>
                                 <li><a href="car-without-sidebar.html">Cars</a></li>
-                                <li class="active"><a href="contact.html">Contact</a></li>
+                                <li><a href="contact.html">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -136,37 +137,15 @@
                 	<div class="login-page-content">
                 		<div class="login-form">
                 			<h3>Sign Up</h3>
-							<form action="index.html">
-								<div class="name">
-									<div class="row">
-										<div class="col-md-6">
-											<input type="text" placeholder="First Name">
-										</div>
-										<div class="col-md-6">
-											<input type="text" placeholder="Last Name">
-										</div>
-									</div>
-								</div>
-								<div class="username">
-									<input type="email" placeholder="Email">
-								</div>
-								<div class="username">
-									<input type="text" placeholder="Username">
-								</div>
-								<div class="password">
-									<input type="password" placeholder="Password">
-								</div>
+							<form method="POST">
+                {% csrf_token %}
+								{{ form|crispy }}
 								<div class="log-btn">
 									<button type="submit"><i class="fa fa-check-square"></i> Sign Up</button>
 								</div>
 							</form>
                 		</div>
 
-                		<div class="login-other">
-                			<span class="or">or</span>
-                			<a href="#" class="login-with-btn facebook"><i class="fa fa-facebook"></i> Signup With Facebook</a>
-                			<a href="#" class="login-with-btn google"><i class="fa fa-google"></i> Signup With Google</a>
-                		</div>
                 		<div class="create-ac">
                 			<p>Have an account? <a href="login.html">Sign In</a></p>
                 		</div>

@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib import messages
 from .models import Car
+from .forms import UserRegisterForm
 # Create your views here.
 
 def index(request):
@@ -25,4 +27,13 @@ def login(request):
     return render(request,'ourApp/login.html')
 
 def register(request):
-    return render(request,'ourApp/register.html')
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}!')
+            return redirect('index')
+    else:
+        form = UserRegisterForm()
+    return render(request,'ourApp/register.html', {'form': form})

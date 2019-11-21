@@ -110,20 +110,43 @@
                     </div>
                     <!--== Logo End ==-->
 
-                    <!--== Main Menu Start ==-->
-                    <div class="col-lg-8 d-none d-xl-block">
-                        <nav class="mainmenu alignright">
-                            <ul>
-                                <li class="active"><a href="{% url 'index'%}">Home</a>
+                      {% if messages %}
+                        {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                          </div>
+                        {% endfor %}
+                        <div>
+                            <nav class="mainmenu alignright">
+                                <ul>
+                                    <li class="active"><a href="{% url 'index'%}">Home</a>
 
-                                </li>
-                                <li><a href="{% url 'about'%}">About</a></li>
-                                <li><a href="{% url 'services'%}">services</a></li>
-                                <li><a href="{% url 'cars-without-sidebar'%}">Cars</a></li>
-                                <li><a href="{% url 'contact' %}">Contact</a></li>
-                            </ul>
-                        </nav>
-                    </div>
+                                    </li>
+                                    <li><a href="{% url 'about'%}">About</a></li>
+                                    <li><a href="{% url 'services'%}">services</a></li>
+                                    <li><a href="{% url 'cars-without-sidebar'%}">Cars</a></li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        {% else %}
+                        <div class="col-lg-8 d-none d-xl-block">
+                            <nav class="mainmenu alignright">
+                                <ul>
+                                    <li class="active"><a href="{% url 'index'%}">Home</a>
+
+                                    </li>
+                                    <li><a href="{% url 'about'%}">About</a></li>
+                                    <li><a href="{% url 'services'%}">services</a></li>
+                                    <li><a href="{% url 'cars-without-sidebar'%}">Cars</a></li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                      {% endif %}
+
+                    <!--== Main Menu Start ==-->
+
                     <!--== Main Menu End ==-->
                 </div>
             </div>
