@@ -20,3 +20,9 @@ def cars(request):
 
 def contact(request):
     return render(request,'ourApp/contact.html')
+
+def login(request):
+    return render(request,'ourApp/login.html')
+
+def register(request):
+    return render(request,'ourApp/register.html')
