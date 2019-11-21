@@ -364,7 +364,7 @@ a.slicknav_btn {
 /*== Slider Area CSS Start ==*/
 
 .single-slide-item {
-	background-image: url(assets/img/banner.jpg);
+	background-image: url(../img/banner.jpg);
 	background-position: center center;
 	background-size: cover;
 	padding: 80px 0;
