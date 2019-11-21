@@ -64,7 +64,7 @@ class Order(models.Model):
 
 
 class SimpleUser(AbstractUser):
-    birth_date = models.DateTimeField('date of birth')
+    birth_date = models.DateTimeField('date of birth', null=True, blank=True)
     address = models.CharField(default='NULL',max_length=200)
     userImg = models.ImageField(upload_to='user_avas/', default='NULL')
     groups = Group()
