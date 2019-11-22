@@ -25,7 +25,7 @@ SECRET_KEY = 'm2l*2%o%adg7#!t1-(xar(dd%_=i_g5wtw)kpb-ho%n#g@dah_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.219','localhost','127.0.0.1']
 
 
 # Application definition
@@ -122,3 +122,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+AUTH_USER_MODEL = 'ourApp.SimpleUser'
