@@ -1,4 +1,5 @@
 {%extends "ourApp/layout.html" %}
+{% load crispy_forms_tags %}
 
 {%block content%}
 {% load staticfiles %}
@@ -39,7 +40,7 @@
                 		</div>
 
                 		<div class="create-ac">
-                			<p>Have an account? <a href="login.html">Sign In</a></p>
+                			<p>Have an account? <a href="{% url 'login' %}">Sign In</a></p>
                 		</div>
                 		<div class="login-menu">
                 			<a href="about.html">About</a>

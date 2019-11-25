@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 from .models import Car
 from .forms import UserRegisterForm
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def index(request):
@@ -37,3 +38,7 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request,'ourApp/register.html', {'form': form})
+
+@login_required
+def profile(request):
+    return render(request, 'ourApp/profile.html')

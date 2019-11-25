@@ -10,28 +10,6 @@
     <link rel="shortcut icon" href="{% static 'ourApp/img/Kazakhstan.ico' %}" type="image/x-icon" />
 
     <title>Nomad Rent - Car Rental Service</title>
-    <!--=== Bootstrap CSS ===-->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <!--=== Vegas Min CSS ===-->
-    <link href="assets/css/plugins/vegas.min.css" rel="stylesheet">
-    <!--=== Slicknav CSS ===-->
-    <link href="assets/css/plugins/slicknav.min.css" rel="stylesheet">
-    <!--=== Magnific Popup CSS ===-->
-    <link href="assets/css/plugins/magnific-popup.css" rel="stylesheet">
-    <!--=== Owl Carousel CSS ===-->
-    <link href="assets/css/plugins/owl.carousel.min.css" rel="stylesheet">
-    <!--=== Gijgo CSS ===-->
-    <link href="assets/css/plugins/gijgo.css" rel="stylesheet">
-    <!--=== FontAwesome CSS ===-->
-    <link href="assets/css/font-awesome.css" rel="stylesheet">
-    <!--=== Theme Reset CSS ===-->
-    <link href="assets/css/reset.css" rel="stylesheet">
-    <!--=== Main Style CSS ===-->
-    <link href="style.css" rel="stylesheet">
-    <!--=== Responsive CSS ===-->
-    <link href="assets/css/responsive.css" rel="stylesheet">
-
-
     <link rel="stylesheet" href="{% static 'ourApp/css/bootstrap.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'ourApp/css/font-awesome.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'ourApp/css/reset.css' %}" type="text/css">
@@ -85,11 +63,17 @@
                         <i class="fa fa-clock-o"></i> Mon-Fri 08.00 - 21.00
                     </div>
                     <!--== Single HeaderTop End ==-->
-
                     <!--== Social Icons Start ==-->
                     <div class="col-lg-3 text-right">
                         <div class="header-social-icons">
                             <a href="https://www.instagram.com/iitu_kz/?hl=ru"><i class="fa fa-behance"></i></a>
+                            {% if user.is_authenticated %}
+                              <a class = "create-ac" href="{% url 'profile' %}">Profile</a>
+                              <a class = "create-ac" href="{% url 'logout' %}">Logout</a>
+                            {% else %}
+                              <a class = "create-ac" href="{% url 'login' %}">Login</a>
+                              <a class = "create-ac" href="{% url 'register' %}">Register</a>
+                            {% endif %}
                         </div>
                     </div>
                     <!--== Social Icons End ==-->
