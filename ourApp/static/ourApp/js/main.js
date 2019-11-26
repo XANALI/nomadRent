@@ -165,13 +165,13 @@
                     src: 'static/ourApp/img/slider-img/slider-img-1.jpg'
                 },
                 {
-                    src: '../img/slider-img/slider-img-2.jpg'
+                    src: 'static/ourApp/img/slider-img/slider-img-2.jpg'
                 },
                 {
-                    src: '../img/slider-img/slider-img-3.jpg'
+                    src: 'static/ourApp/img/slider-img/slider-img-3.jpg'
                 },
                 {
-                    src: '../img/slider-img/slider-img-4.jpg'
+                    src: 'static/ourApp/img/slider-img/slider-img-4.jpg'
                 }
             ]
         }); //Home Page Two Slideshow

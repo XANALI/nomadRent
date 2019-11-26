@@ -2750,7 +2750,7 @@ body,
 ================================*/
 
 #our-facility {
-	background-image: url(static/ourApp/img/slider-img/slider-img-1.jpg);
+	background-image: url(../img/slider-img/slider-img-1.jpg);
 	background-size: cover;
 	background-position: center center;
 	color: #fff;
