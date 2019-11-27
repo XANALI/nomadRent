@@ -187,6 +187,11 @@
             }
         });
 
+        $('#startDate').on('changeDate', function (selected) {
+         $('#endDate').datepicker('setDate', selected.date);
+          $(this).datepicker('hide');
+      });
+
         $('#endDate2').datepicker({
             uiLibrary: 'bootstrap4',
             iconsLibrary: 'fontawesome',
