@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
-from .models import Car
+from .models import Car, ModelOfCar
 from .forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def index(request):
-    
-    return render(request,'ourApp/index2.html')
+    cars = Car.objects.all()
+    models = ModelOfCar.objects.all()
+    return render(request,'ourApp/index2.html',{'cars':cars,'models':models})
 
 def about(request):
     return render(request,'ourApp/about.html')
