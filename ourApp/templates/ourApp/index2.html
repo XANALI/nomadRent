@@ -369,126 +369,47 @@
                                 <!-- Choose Filtering Menu Start -->
                                 <div class="home2-car-filter">
                                     <a href="#" data-filter="*" class="active">all</a>
-                                    <a href="#" data-filter=".con">Conver</a>
-                                    <a href="#" data-filter=".hat">Truck</a>
-                                    <a href="#" data-filter=".mpv">MPV</a>
-                                    <a href="#" data-filter=".sedan">Sedan</a>
-                                    <a href="#" data-filter=".suv">SUV</a>
+                                    {% for model in models%}
+                                      <a href="#" data-filter=".{{model.name}}">{{model.name}}</a>
+                                    {% endfor %}
                                 </div>
                                 <!-- Choose Filtering Menu End -->
                             </div>
 
                             <div class="col-lg-9">
                                 <!-- Choose Cars Content-wrap -->
+
                                 <div class="row popular-car-gird">
-
+                                  {% for car in cars%}
                                     <!-- Single Popular Car Start -->
-                                    <div class="col-lg-6 col-md-6 con suv mpv">
+                                    <div class="col-lg-6 col-md-6 {{car.model_id.name}}">
                                         <div class="single-popular-car">
                                             <div class="p-car-thumbnails">
-                                                <a class="car-hover" href="{% static 'ourApp/img/car/car-1.jpg'%}">
-                                                    <img src="{% static 'ourApp/img/car/car-1.jpg' %}" alt="JSOFT">
+                                                <a class="car-hover" href="{{car.picture_id.userImg.url}}">
+                                                    <img src="{{car.picture_id.userImg.url}}" alt="JSOFT">
                                                 </a>
                                             </div>
 
                                             <div class="p-car-content">
                                                 <h3>
-                                                    <a href="#">Dodge Ram 1500</a>
-                                                    <span class="price"><i class="fa fa-tag"></i> $55/day</span>
+
+                                                    <a href="#">{{car.name}}</a>
+                                                    <span class="price"><i class="fa fa-tag"></i> ${{car.price_hourly}}/hour</span>
                                                 </h3>
 
-                                                <h5>HATCHBACK</h5>
+                                                <h5>{{car.model_id.name}}</h5>
 
                                                 <div class="p-car-feature">
-                                                    <a href="#">2017</a>
-                                                    <a href="#">manual</a>
-                                                    <a href="#">AIR CONDITION</a>
+                                                    <a href="#">{{car.model_year}}</a>
+                                                    <a href="#">{{car.engine_id.name}}</a>
+                                                    <a href="#">{{car.fuel_id.name}}</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- Single Popular Car End -->
+                                  {% endfor %}
 
-                                    <!-- Single Popular Car Start -->
-                                    <div class="col-lg-6 col-md-6 hat sedan">
-                                        <div class="single-popular-car">
-                                            <div class="p-car-thumbnails">
-                                                <a class="car-hover" href="{% static 'ourApp/img/car/car-2.jpg'%}">
-                                                    <img src="{% static 'ourApp/img/car/car-2.jpg' %}" alt="JSOFT">
-                                                </a>
-                                            </div>
-
-                                            <div class="p-car-content">
-                                                <h3>
-                                                    <a href="#">Dodge Ram 1500</a>
-                                                    <span class="price"><i class="fa fa-tag"></i> $55/day</span>
-                                                </h3>
-
-                                                <h5>HATCHBACK</h5>
-
-                                                <div class="p-car-feature">
-                                                    <a href="#">2017</a>
-                                                    <a href="#">manual</a>
-                                                    <a href="#">AIR CONDITION</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Popular Car End -->
-
-                                    <!-- Single Popular Car Start -->
-                                    <div class="col-lg-6 col-md-6 suv con mpv">
-                                        <div class="single-popular-car">
-                                            <div class="p-car-thumbnails">
-                                                <a class="car-hover" href="{% static 'ourApp/img/car/car-3.jpg'%}">
-                                                   <img src="{% static 'ourApp/img/car/car-3.jpg' %}" alt="JSOFT">
-                                                </a>
-                                            </div>
-
-                                            <div class="p-car-content">
-                                                <h3>
-                                                    <a href="#">Dodge Ram 1500</a>
-                                                    <span class="price"><i class="fa fa-tag"></i> $55/day</span>
-                                                </h3>
-
-                                                <h5>HATCHBACK</h5>
-
-                                                <div class="p-car-feature">
-                                                    <a href="#">2017</a>
-                                                    <a href="#">manual</a>
-                                                    <a href="#">AIR CONDITION</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Popular Car End -->
-
-                                    <!-- Single Popular Car Start -->
-                                    <div class="col-lg-6 col-md-6 con hat">
-                                        <div class="single-popular-car">
-                                            <div class="p-car-thumbnails">
-                                                <a class="car-hover" href="{% static 'ourApp/img/car/car-4.jpg'%}">
-                                                    <img src="{% static 'ourApp/img/car/car-4.jpg' %}" alt="JSOFT">
-                                                </a>
-                                            </div>
-
-                                            <div class="p-car-content">
-                                                <h3>
-                                                    <a href="#">Dodge Ram 1500</a>
-                                                    <span class="price"><i class="fa fa-tag"></i> $55/day</span>
-                                                </h3>
-
-                                                <h5>HATCHBACK</h5>
-
-                                                <div class="p-car-feature">
-                                                    <a href="#">2017</a>
-                                                    <a href="#">manual</a>
-                                                    <a href="#">AIR CONDITION</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Popular Car End -->
                                 </div>
                                 <!-- Choose Cars Content-wrap -->
                             </div>
