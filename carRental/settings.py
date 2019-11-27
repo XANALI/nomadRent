@@ -127,3 +127,6 @@ AUTH_USER_MODEL = 'ourApp.SimpleUser'
 
 LOGIN_REDIRECT_URL = 'index'
 LOGIN_URL = 'login'
+
+MEDIA_ROOT = BASE_DIR + r'/ourApp/media'
+MEDIA_URL = '/media/'
