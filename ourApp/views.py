@@ -42,3 +42,6 @@ def register(request):
 @login_required
 def profile(request):
     return render(request, 'ourApp/profile.html')
+
+def order(request):
+    return render(request,'ourApp/order.html')
