@@ -51,6 +51,9 @@ class Car(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering=['rate']
+
 class Order(models.Model):
     car_id = models.ForeignKey(Car, on_delete=models.CASCADE, default=0)
     start_date = models.DateTimeField('starting date')
