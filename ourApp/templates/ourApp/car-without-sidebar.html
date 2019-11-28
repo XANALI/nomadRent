@@ -30,11 +30,16 @@
                     <div class="car-list-content">
                         <div class="row">
                             <!-- Single Car Start -->
+                            {% for car in page_object.object_list%}
                             <div class="col-lg-6 col-md-6">
                                 <div class="single-car-wrap">
-                                    <div class="car-list-thumb car-thumb-1"></div>
+                                  <div class="p-car-thumbnails">
+                                      <a class="car-hover" href="{{car.picture_id.userImg.url}}">
+                                          <img src="{{car.picture_id.userImg.url}}" alt="JSOFT">
+                                      </a>
+                                  </div>
                                     <div class="car-list-info without-bar">
-                                        <h2><a href="#">Aston Martin One-77</a></h2>
+                                        <h2><a href="#">{{car.name}}</a></h2>
                                         <h5>39$ Rent /per a day</h5>
                                         <p>Vivamus eget nibh. Etiam cursus leo vel metus. Nulla facilisi. Aenean inorci luctus et ultrices posuere cubilia.</p>
                                         <ul class="car-info-list">
@@ -55,105 +60,37 @@
                             </div>
                             <!-- Single Car End -->
 
-                            <!-- Single Car Start -->
-                            <div class="col-lg-6 col-md-6">
-                                <div class="single-car-wrap">
-                                    <div class="car-list-thumb car-thumb-2"></div>
-                                    <div class="car-list-info without-bar">
-                                        <h2><a href="#">Aston Martin One-77</a></h2>
-                                        <h5>39$ Rent /per a day</h5>
-                                        <p>Vivamus eget nibh. Etiam cursus leo vel metus. Nulla facilisi. Aenean inorci luctus et ultrices posuere cubilia.</p>
-                                        <ul class="car-info-list">
-                                            <li>AC</li>
-                                            <li>Diesel</li>
-                                            <li>Auto</li>
-                                        </ul>
-                                        <p class="rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star unmark"></i>
-                                        </p>
-                                        <a href="#" class="rent-btn">Book It</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Car End -->
-
-                            <!-- Single Car Start -->
-                            <div class="col-lg-6 col-md-6">
-                                <div class="single-car-wrap">
-                                    <div class="car-list-thumb car-thumb-3"></div>
-                                    <div class="car-list-info without-bar">
-                                        <h2><a href="#">Aston Martin One-77</a></h2>
-                                        <h5>39$ Rent /per a day</h5>
-                                        <p>Vivamus eget nibh. Etiam cursus leo vel metus. Nulla facilisi. Aenean inorci luctus et ultrices posuere cubilia.</p>
-                                        <ul class="car-info-list">
-                                            <li>AC</li>
-                                            <li>Diesel</li>
-                                            <li>Auto</li>
-                                        </ul>
-                                        <p class="rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star unmark"></i>
-                                        </p>
-                                        <a href="#" class="rent-btn">Book It</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Car End -->
-
-                            <!-- Single Car Start -->
-                            <div class="col-lg-6 col-md-6">
-                                <div class="single-car-wrap">
-                                    <div class="car-list-thumb car-thumb-4"></div>
-                                    <div class="car-list-info without-bar">
-                                        <h2><a href="#">Aston Martin One-77</a></h2>
-                                        <h5>39$ Rent /per a day</h5>
-                                        <p>Vivamus eget nibh. Etiam cursus leo vel metus. Nulla facilisi. Aenean inorci luctus et ultrices posuere cubilia.</p>
-                                        <ul class="car-info-list">
-                                            <li>AC</li>
-                                            <li>Diesel</li>
-                                            <li>Auto</li>
-                                        </ul>
-                                        <p class="rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star unmark"></i>
-                                        </p>
-                                        <a href="#" class="rent-btn">Book It</a>
-                                    </div>
-                                </div>
-                            </div>
+                            {%endfor%}
                             <!-- Single Car End -->
                         </div>
                     </div>
-
                     <!-- Page Pagination Start -->
+                    {% if is_paginated %}
                     <div class="page-pagi">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                <li class="page-item {% if not prev_url %} disabled {% endif %}">
+                                  <a class="page-link" href="{{prev_url}}" tabindex="-1">Previous</a>
+                                </li>
 
+                                {% for n in page_object.paginator.page_range %}
 
+                                    {% if page_object.number == n %}
+                                        <li class="page-item active"><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
+                                    {% elif n > page_object.number|add:-3 and n < page_object.number|add:3 %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
+                                    {%endif%}
 
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                {%endfor%}
 
-                                
-                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                <li class="page-item {% if not next_url %} disabled {% endif %}">
+                                  <a class="page-link" href="{{next_url}}" tabindex="-1">Next</a>
+                                </li>
                             </ul>
                         </nav>
                     </div>
+                    {% endif %}
+
                     <!-- Page Pagination End -->
                 </div>
                 <!-- Car List Content End -->

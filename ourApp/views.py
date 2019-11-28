@@ -25,10 +25,29 @@ def services(request):
 def cars(request):
     cars=Car.objects.all()
     paginator=Paginator(cars,2)
+    page_number=request.GET.get('page',1)
+    page=paginator.get_page(page_number)
 
-    page=paginator.get_page(1)
+    is_paginated=page.has_other_pages()
 
-    return render(request,'ourApp/car-without-sidebar.html',context={'cars':page.object_list})
+    if page.has_previous():
+        prev_url='?page={}'.format(page.previous_page_number())
+    else:
+        prev_url=''
+
+    if page.has_next():
+        next_url='?page={}'.format(page.next_page_number())
+    else:
+        next_url=''
+
+    context={
+        'page_object':page,
+        'is_paginated':is_paginated,
+        'next_url':next_url,
+        'prev_url':prev_url
+    }
+
+    return render(request,'ourApp/car-without-sidebar.html',context=context)
 
 def contact(request):
     return render(request,'ourApp/contact.html')
