@@ -4,6 +4,8 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.models import Permission
 import datetime
 from django.utils import timezone
+from PIL import Image
+
 
 class AdditionalEquipment(models.Model):
     name = models.CharField(max_length=200)
@@ -69,7 +71,17 @@ class Order(models.Model):
 class SimpleUser(AbstractUser):
     birth_date = models.DateTimeField('date of birth', null=True, blank=True)
     address = models.CharField(default='NULL',max_length=200)
-    userImg = models.ImageField(upload_to='user_avas/', default='NULL')
+    userImg = models.ImageField(upload_to='user_avas/', default='user_avas/default.jpg')
 
     def was_born_date(self):
         return self.birth_date >= timezone.now() - datetime.timedelta(days=1)
+
+    def save(self, *args, **kwargs):
+        super().save()
+
+        img = Image.open(self.userImg.path)
+
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.userImg.path)

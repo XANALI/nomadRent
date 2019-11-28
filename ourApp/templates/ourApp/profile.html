@@ -25,27 +25,96 @@
     <!--== Login Page Content Start ==-->
     <section id="lgoin-page-wrap" class="section-padding">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-              <h2>{{ user.username }}</h2>
-          </div>
-          <div class="col-lg-12 text-left">
-            <img class="rounded-circle account-img" src="{{ user.userImg.url }}" alt="JSOFT" width = 150px>
-          </div>
-          <div class="col-lg-7 text-center">
-              <h5>Name:</h5>
-              <p>{{ user.name }}</p>
-          </div>
-          <div class="col-lg-7 text-center">
-              <h5>E-mail:</h5>
-              <p>{{ user.email }}</p>
-          </div>
-          <div class="col-lg-7 text-center">
-              <h5>Address:</h5>
-              <p>{{ user.address }}</p>
-          </div>
+        <div class="row justify-content-center">
+            <div class="col-10">
+                    <div class="card-body">
+                        <div class="card-title mb-4">
+                            <div class="d-flex justify-content-start">
+
+                                    <img class=" img-rounded img-thumbnail" width="150" src="{{ user.userImg.url }} " />
+
+
+                                <div class="ml-4">
+                                    <h2 class="d-block" style="font-size: 40px; font-weight: bold">{{ user.username }}</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                              <div class="row">
+                                  <div class="col-sm-3 col-md-2 col-5">
+                                      <label style="font-weight:bold;">First Name</label>
+                                  </div>
+                                  <div class="col-md-8 col-6">
+                                      {{ user.first_name }}
+                                  </div>
+                              </div>
+                              <hr />
+
+                              <div class="row">
+                                  <div class="col-sm-3 col-md-2 col-5">
+                                      <label style="font-weight:bold;">Last Name</label>
+                                  </div>
+                                  <div class="col-md-8 col-6">
+                                      {{ user.last_name }}
+                                  </div>
+                              </div>
+                              <hr />
+                              <div class="row">
+                                  <div class="col-sm-3 col-md-2 col-5">
+                                        <label style="font-weight:bold;">Email</label>
+                                  </div>
+                                  <div class="col-md-8 col-6">
+                                      {{ user.email }}
+                                  </div>
+                              </div>
+                              <hr />
+                              <div class="row">
+                                  <div class="col-sm-3 col-md-2 col-5">
+                                      <label style="font-weight:bold;">Date Joined</label>
+                                  </div>
+                                  <div class="col-md-8 col-6">
+                                      {{ user.date_joined }}
+                                  </div>
+                              </div>
+                              <hr />
+                              <div class="row">
+                                  <div class="col-sm-3 col-md-2 col-5">
+                                      <label style="font-weight:bold;">Date Of Birth</label>
+                                  </div>
+                                  <div class="col-md-8 col-6">
+                                      {{ user.birth_date }}
+                                  </div>
+                              </div>
+                              <hr />
+                              <div class="row">
+                                  <div class="col-sm-3 col-md-2 col-5">
+                                      <label style="font-weight:bold;"><a href="#"></a>Address</label>
+                                  </div>
+                                  <div class="col-md-8 col-6">
+                                      {{ user.address }}
+                                  </div>
+                              </div>
+                              <hr />
+                            </div>
+                        </div>
+
+
+
+
+                </div>
+            </div>
+            <form method="POST" enctype="multipart/form-data">
+              <h2>Update Data</h2>
+              {% csrf_token %}
+              {{ user_form|crispy }}
+              <div class="log-btn">
+                <button type="submit"><i class="fa fa-check-square"></i> Update</button>
+              </div>
+            </form>
         </div>
-      </div>
+    </div>
 
     </section>
     <!--== Login Page Content End ==-->
