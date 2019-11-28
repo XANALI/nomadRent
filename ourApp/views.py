@@ -4,6 +4,8 @@ from django.contrib import messages
 from .models import Car, ModelOfCar
 from .forms import UserRegisterForm, UserUpdateForm
 from django.contrib.auth.decorators import login_required
+
+from django.core.paginator import Paginator
 # Create your views here.
 
 def index(request):
@@ -21,7 +23,12 @@ def services(request):
     return render(request,'ourApp/services.html')
 
 def cars(request):
-    return render(request,'ourApp/car-without-sidebar.html')
+    cars=Car.objects.all()
+    paginator=Paginator(cars,2)
+
+    page=paginator.get_page(1)
+
+    return render(request,'ourApp/car-without-sidebar.html',context={'cars':page.object_list})
 
 def contact(request):
     return render(request,'ourApp/contact.html')
