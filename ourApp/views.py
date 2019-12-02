@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from .models import Car, ModelOfCar
-from .forms import UserRegisterForm, UserUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, BankCardForm, DriverLicenseForm
 from django.contrib.auth.decorators import login_required
 
 from django.core.paginator import Paginator
@@ -83,3 +83,22 @@ def profile(request):
 
 def order(request):
     return render(request,'ourApp/order.html')
+
+def confirmation(request):
+    if request.method == 'POST':
+        bank_card_form = BankCardForm(request.POST, instance=request.user.bank_card_id)
+        driver_license_form = DriverLicenseForm(request.POST, request.FILES, instance=request.user.license_id)
+        if bank_card_form.is_valid() and driver_license_form.is_valid():
+            bank_card_form.save()
+            driver_license_form.save()
+            return redirect('index')
+
+    else:
+        bank_card_form = BankCardForm(instance=request.user.bank_card_id)
+        driver_license_form = DriverLicenseForm(instance=request.user.license_id)
+
+    context = {
+        'bank_card_form':bank_card_form,
+        'driver_license_form':driver_license_form
+    }
+    return render(request,'ourApp/confirmation.html', context)

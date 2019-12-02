@@ -37,6 +37,35 @@ class ModelOfCar(models.Model):
 class Gallery(models.Model):
     userImg = models.ImageField(upload_to='car_pictures/', default='NULL')
 
+class City(models.Model):
+    name = models.CharField(max_length=200)
+    map_link = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+class BankCard(models.Model):
+    full_name = models.CharField(max_length=200)
+    card_numbers = models.CharField(max_length=200)
+    expiration_date = models.DateTimeField('expiration date', null=True, blank=True)
+    cvv_code = models.IntegerField()
+    country = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.full_name
+
+class DriverLicense(models.Model):
+    license_picture = models.ImageField(upload_to='license_pictures/', default='NULL')
+
+class Contact(models.Model):
+    full_name = models.CharField(max_length=200)
+    email_address = models.CharField(max_length=200)
+    website = models.CharField(max_length=200)
+    subject = models.CharField(max_length=200)
+    message = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.full_name
 
 class Car(models.Model):
     name = models.CharField(max_length=200)
@@ -49,7 +78,7 @@ class Car(models.Model):
     fuel_id = models.ForeignKey(FuelType, on_delete=models.CASCADE,default=1)
     picture_id = models.ForeignKey(Gallery, on_delete=models.CASCADE,default=1)
     add_equip_id = models.ForeignKey(AdditionalEquipment, on_delete=models.CASCADE,default=1)
-
+    city_id = models.ForeignKey(City, on_delete=models.CASCADE, default=0)
     def __str__(self):
         return self.name
 
@@ -72,6 +101,8 @@ class SimpleUser(AbstractUser):
     birth_date = models.DateTimeField('date of birth', null=True, blank=True)
     address = models.CharField(default='NULL',max_length=200)
     userImg = models.ImageField(upload_to='user_avas/', default='user_avas/default.jpg')
+    bank_card_id = models.ForeignKey(BankCard, on_delete=models.CASCADE, default=1)
+    license_id = models.ForeignKey(DriverLicense, on_delete=models.CASCADE, default=1)
 
     def was_born_date(self):
         return self.birth_date >= timezone.now() - datetime.timedelta(days=1)

@@ -1,5 +1,5 @@
 from django import forms
-from .models import SimpleUser
+from .models import SimpleUser, BankCard, DriverLicense
 from django.contrib.auth.forms import UserCreationForm
 from PIL import Image
 
@@ -43,3 +43,39 @@ class UserUpdateForm(forms.ModelForm):
             user.save()
 
         return user
+
+class BankCardForm(forms.ModelForm):
+    expiration_date = forms.DateTimeField()
+
+    class Meta:
+        model = BankCard
+        fields = ['full_name', 'card_numbers', 'expiration_date', 'cvv_code', 'country']
+
+    def save(self, commit=True):
+        bank_card = super(BankCardForm, self).save(commit = False)
+        bank_card.full_name = self.cleaned_data['full_name']
+        bank_card.card_numbers = self.cleaned_data['card_numbers']
+        bank_card.expiration_date = self.cleaned_data['expiration_date']
+        bank_card.cvv_code = self.cleaned_data['cvv_code']
+        bank_card.country = self.cleaned_data['country']
+
+        if commit:
+            bank_card.save()
+
+        return bank_card
+
+class DriverLicenseForm(forms.ModelForm):
+    license_picture = forms.ImageField()
+
+    class Meta:
+        model = DriverLicense
+        fields = ['license_picture']
+
+    def save(self, commit=True):
+        driver_license = super(DriverLicenseForm, self).save(commit = False)
+        driver_license.license_picture = self.cleaned_data['license_picture']
+
+        if commit:
+            driver_license.save()
+
+        return driver_license

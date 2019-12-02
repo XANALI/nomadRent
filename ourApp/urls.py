@@ -12,4 +12,5 @@ urlpatterns = [
     path('register/',views.register,name="register"),
     path('profile/',views.profile,name="profile"),
     path('order/',views.order,name="order"),
+    path('confirmation/',views.confirmation,name="confirmation"),
 ]
