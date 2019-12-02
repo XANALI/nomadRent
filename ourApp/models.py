@@ -85,17 +85,6 @@ class Car(models.Model):
     class Meta:
         ordering=['rate']
 
-class Order(models.Model):
-    car_id = models.ForeignKey(Car, on_delete=models.CASCADE, default=0)
-    start_date = models.DateTimeField('starting date')
-    end_date = models.DateTimeField('ending date')
-    approves = models.BooleanField()
-    finished = models.BooleanField()
-    canceled = models.BooleanField()
-    total_price = models.IntegerField(default=0)
-    rate = models.IntegerField(default=0)
-
-
 
 class SimpleUser(AbstractUser):
     birth_date = models.DateTimeField('date of birth', null=True, blank=True)
@@ -116,3 +105,17 @@ class SimpleUser(AbstractUser):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.userImg.path)
+
+
+class Order(models.Model):
+    car_id = models.ForeignKey(Car, on_delete=models.CASCADE, default=0)
+    user_id = models.ForeignKey(SimpleUser, on_delete=models.CASCADE, default=0)
+    start_date = models.DateTimeField('starting date')
+    end_date = models.DateTimeField('ending date')
+    approves = models.BooleanField()
+    finished = models.BooleanField()
+    canceled = models.BooleanField()
+    total_price = models.IntegerField(default=0)
+    rate = models.IntegerField(default=0)
+    bank_card_id = models.ForeignKey(BankCard, on_delete=models.CASCADE, default=0)
+    license_id = models.ForeignKey(DriverLicense, on_delete=models.CASCADE, default=0)

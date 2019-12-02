@@ -2,6 +2,7 @@ from django import forms
 from .models import SimpleUser, BankCard, DriverLicense
 from django.contrib.auth.forms import UserCreationForm
 from PIL import Image
+import datetime
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
@@ -45,17 +46,17 @@ class UserUpdateForm(forms.ModelForm):
         return user
 
 class BankCardForm(forms.ModelForm):
-    expiration_date = forms.DateTimeField()
+    expire_date = forms.DateField(initial=datetime.date.today)
 
     class Meta:
         model = BankCard
-        fields = ['full_name', 'card_numbers', 'expiration_date', 'cvv_code', 'country']
+        fields = ['full_name', 'card_numbers', 'expire_date', 'cvv_code', 'country']
 
     def save(self, commit=True):
         bank_card = super(BankCardForm, self).save(commit = False)
         bank_card.full_name = self.cleaned_data['full_name']
         bank_card.card_numbers = self.cleaned_data['card_numbers']
-        bank_card.expiration_date = self.cleaned_data['expiration_date']
+        bank_card.expiration_date = self.cleaned_data['expire_date']
         bank_card.cvv_code = self.cleaned_data['cvv_code']
         bank_card.country = self.cleaned_data['country']
 
