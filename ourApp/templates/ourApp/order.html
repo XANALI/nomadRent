@@ -2,77 +2,225 @@
 
 {%block content%}
 {% load staticfiles %}
-<section id="slider-area">
-        <!--== slide Item One ==-->
-        <div class="single-slide-item overlay">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-5">
-                        <div class="book-a-car">
-                            <form action="{% url 'index' %}">
-                                <!--== Pick Up Location ==-->
-                                <div class="pickup-location book-item">
-                                    <h4>PICK-UP LOCATION:</h4>
-                                    <select class="custom-select">
-                                      <option selected>Select</option>
-                                      <option value="1">Dhaka</option>
-                                      <option value="2">Comilla</option>
-                                      <option value="3">Barishal</option>
-                                      <option value="3">Rangpur</option>
-                                    </select>
-                                </div>
-                                <!--== Pick Up Location ==-->
 
-                                <!--== Pick Up Date ==-->
-                                <div class="pick-up-date book-item">
-                                    <h4>PICK-UP DATE:</h4>
-                                    <input id="startDate" placeholder="Pick Up Date" />
-
-                                    <div class="return-car">
-                                        <h4>Return DATE:</h4>
-                                        <input id="endDate" placeholder="Return Date" />
-                                    </div>
-                                </div>
-                                <!--== Pick Up Location ==-->
-
-                                <!--== Car Choose ==-->
-                                <div class="choose-car-type book-item">
-                                    <h4>CHOOSE CAR TYPE:</h4>
-                                    <select class="custom-select">
-                                      <option selected>Select</option>
-                                      <option value="1">BMW</option>
-                                      <option value="2">Audi</option>
-                                      <option value="3">Lexus</option>
-                                    </select>
-                                </div>
-                                <!--== Car Choose ==-->
-
-                                <div class="book-button text-center">
-                                    <button class="book-now-btn">Book Now</button>
-                                </div>
-                            </form>
-                        </div>
+    <!--== Page Title Area Start ==-->
+    <section id="page-title-area" class="section-padding overlay">
+        <div class="container">
+            <div class="row">
+                <!-- Page Title Start -->
+                <div class="col-lg-12">
+                    <div class="section-title  text-center">
+                        <h2>Our Cars</h2>
+                        <span class="title-line"><i class="fa fa-car"></i></span>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                     </div>
+                </div>
+                <!-- Page Title End -->
+            </div>
+        </div>
+    </section>
+    <!--== Page Title Area End ==-->
 
-                    <div class="col-lg-7 text-right">
-                        <div class="display-table">
-                            <div class="display-table-cell">
-                                <div class="slider-right-text">
-                                  <div class="row">
-                                    <div style = "margin-left: 8%; margin-top:15%">  <iframe src="https://www.google.com/maps/d/embed?mid=1Xv6fIsr67hxMiCXoU7BTc0GaZs0bDpF-" width="600" height="480"></iframe>
-                                    </div>
-                                  </div>
-                                  </div>
+    <!--== Car List Area Start ==-->
+    <section id="car-list-area" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar Area Start -->
+                <div class="col-lg-4">
+                    <div class="sidebar-content-wrap">
+                        <!-- Single Sidebar Start -->
+                        <div class="single-sidebar">
+                            <h3>For More Informations</h3>
+
+                            <div class="book-a-car" style="margin-top:0px">
+                                <form action="{% url 'index' %}">
+                                    <!--== Pick Up Location ==-->
+                                    <div class="pickup-location book-item">
+                                        <h4>PICK-UP LOCATION:</h4>
+                                        <select class="custom-select">
+                                          <option selected>Select</option>
+                                          <option value="1">Dhaka</option>
+                                          <option value="2">Comilla</option>
+                                          <option value="3">Barishal</option>
+                                          <option value="3">Rangpur</option>
+                                        </select>
+                                   </div>
+                                   <div class="pick-up-date book-item">
+                                       <h4>PICK-UP DATE:</h4>
+                                       <input id="startDate" placeholder="Pick Up Date" />
+
+                                       <div class="return-car">
+                                           <h4>Return DATE:</h4>
+                                           <input id="endDate" placeholder="Return Date" />
+                                       </div>
+                                   </div>
+                                   <!--== Pick Up Location ==-->
+
+                                   <!--== Car Choose ==-->
+
+                                   <!--== Car Choose ==-->
+                                </form>
+                        </div>
+                        </div>
+                        <!-- Single Sidebar End -->
+
+                        <!-- Single Sidebar Start -->
+                        <div class="single-sidebar">
+                            <h3>Rental Tips</h3>
+
+                            <div class="sidebar-body">
+                                <ul class="recent-tips">
+                                    <li class="single-recent-tips">
+                                        <div class="recent-tip-thum">
+                                            <a href="#"><img src="{% static 'ourApp/img/we-do/service1-img.png'%}" alt="JSOFT"></a>
+                                        </div>
+                                        <input type="checkbox" id="shest001">
+
+
+                                    </li>
+
+                                    <li class="single-recent-tips">
+                                        <div class="recent-tip-thum">
+                                            <a href="#"><img src="assets/img/we-do/service3-img.png" alt="JSOFT"></a>
+                                        </div>
+                                        <div class="recent-tip-body">
+                                            <h4><a href="#">How to Enjoy Losses Angeles Car Rentals</a></h4>
+                                            <span class="date">February 5, 2018</span>
+                                        </div>
+                                    </li>
+
+                                    <li class="single-recent-tips">
+                                        <div class="recent-tip-thum">
+                                            <a href="#"><img src="assets/img/we-do/service2-img.png" alt="JSOFT"></a>
+                                        </div>
+                                        <div class="recent-tip-body">
+                                            <h4><a href="#">How to Enjoy Losses Angeles Car Rentals</a></h4>
+                                            <span class="date">February 5, 2018</span>
+                                        </div>
+                                    </li>
+
+                                    <li class="single-recent-tips">
+                                        <div class="recent-tip-thum">
+                                            <a href="#"><img src="assets/img/we-do/service3-img.png" alt="JSOFT"></a>
+                                        </div>
+                                        <div class="recent-tip-body">
+                                            <h4><a href="#">How to Enjoy Losses Angeles Car Rentals</a></h4>
+                                            <span class="date">February 5, 2018</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Single Sidebar End -->
+
+                        <!-- Single Sidebar Start -->
+                        <div class="single-sidebar">
+                            <h3>Connect with Us</h3>
+
+                            <div class="sidebar-body">
+                                <div class="social-icons text-center">
+                                    <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                                    <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                                    <a href="#" target="_blank"><i class="fa fa-behance"></i></a>
+                                    <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                    <a href="#" target="_blank"><i class="fa fa-dribbble"></i></a>
                                 </div>
                             </div>
                         </div>
+                        <!-- Single Sidebar End -->
                     </div>
                 </div>
+                <!-- Sidebar Area End -->
+
+
+
+                <!-- Car List Content Start -->
+                <div class="col-lg-8">
+                    <div class="car-list-content m-t-50">
+                        <!-- Single Car Start -->
+
+                        {% for car in page_object.object_list%}
+                        <div class="single-car-wrap">
+                            <div class="row">
+                                <!-- Single Car Thumbnail -->
+                                <div class="col-lg-5">
+                                  <div class="p-car-thumbnails">
+                                      <a class="car-hover" href="{{car.picture_id.userImg.url}}">
+                                          <img src="{{car.picture_id.userImg.url}}" alt="JSOFT">
+                                      </a>
+                                  </div>
+                                </div>
+                                <!-- Single Car Thumbnail -->
+                                <!-- Single Car Info -->
+                                <div class="col-lg-7">
+                                    <div class="display-table">
+                                        <div class="display-table-cell">
+                                            <div class="car-list-info">
+
+
+                                                <h2><a href="#">{{car.name}}</a></h2>
+                                                <h5>${{car.price_hourly}}/hour</h5>
+                                                <p>Vivamus eget nibh. Etiam cursus leo vel metus. Nulla facilisi. Aenean inorci luctus et ultrices posuere cubilia.</p>
+                                                <ul class="car-info-list">
+                                                    <li>{{car.model_year}}</li>
+                                                    <li>{{car.engine_id.name}}</li>
+                                                    <li>{{car.fuel_id.name}}</li>
+                                                </ul>
+                                                <p class="rating">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star unmark"></i>
+                                                </p>
+                                                <a href="#" class="rent-btn">Book It</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Single Car info -->
+                            </div>
+                        </div>
+                        <!-- Single Car End -->
+                        {% endfor %}
+                        <!-- Single Car Start -->
+
+
+                    <!-- Page Pagination Start -->
+                    {% if is_paginated %}
+                    <div class="page-pagi">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item {% if not prev_url %} disabled {% endif %}">
+                                  <a class="page-link" href="{{prev_url}}" tabindex="-1">Previous</a>
+                                </li>
+
+                                {% for n in page_object.paginator.page_range %}
+
+                                    {% if page_object.number == n %}
+                                        <li class="page-item active"><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
+                                    {% elif n > page_object.number|add:-3 and n < page_object.number|add:3 %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
+                                    {%endif%}
+
+                                {%endfor%}
+
+                                <li class="page-item {% if not next_url %} disabled {% endif %}">
+                                  <a class="page-link" href="{{next_url}}" tabindex="-1">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    {% endif %}
+                    <!-- Page Pagination End -->
+                </div>
+                <!-- Car List Content End -->
             </div>
         </div>
-        <!--== slide Item One ==-->
     </section>
-
+    <!--== Car List Area End ==-->
 
 
 {% endblock %}

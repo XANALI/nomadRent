@@ -14,7 +14,9 @@
                                 <p>FOR AS LOW AS $10 A DAY PLUS 15% DISCOUNT <br> FOR OUR RETURNING CUSTOMERS</p>
 
                                 <div class="book-ur-car">
-                                    <form action="{% url 'index'%}">
+                                    <form action="{% url 'order'%}" style="padding-left:120px">
+
+
                                         <div class="pick-location bookinput-item">
                                             <select class="custom-select">
                                               <option selected>Pick Location</option>
@@ -31,15 +33,6 @@
 
                                         <div class="retern-date bookinput-item">
                                             <input id="endDate2" placeholder="Return Date" />
-                                        </div>
-
-                                        <div class="car-choose bookinput-item">
-                                            <select class="custom-select">
-                                              <option selected>Choose Car</option>
-                                              <option value="1">BMW</option>
-                                              <option value="2">Audi</option>
-                                              <option value="3">Lexus</option>
-                                            </select>
                                         </div>
 
                                         <div class="bookcar-btn bookinput-item">

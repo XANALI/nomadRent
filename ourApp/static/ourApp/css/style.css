@@ -1603,7 +1603,7 @@ body,
 	border-radius: 4px;
 	margin: 70px auto auto;
 	overflow: hidden;
-	padding: 50px 20px;
+	padding: 40px 30px;
 	width: 90%;
 }
 
@@ -1615,6 +1615,7 @@ body,
 	width: 19.2%;
 	-webkit-transition: 0.4s;
 	transition: 0.4s;
+	margin: 7px 7px;
 }
 
 .bookinput-item:last-child {
@@ -1919,6 +1920,10 @@ body,
 #book-a-car {
 	padding-top: 100px;
 }
+
+
+
+
 
 .booka-car-content {
 	background-color: #fff;
