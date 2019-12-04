@@ -1,4 +1,5 @@
 {%extends "ourApp/layout.html" %}
+{% load crispy_forms_tags %}
 
 {%block content%}
 {% load staticfiles %}
@@ -27,17 +28,18 @@
             <div class="row">
                 <div class="col-lg-10 m-auto">
                     <div class="contact-form">
-                        <form action="index.html">
+                        <form class="" action="" method="POST">
+                          {% csrf_token %}
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <div class="name-input">
-                                        <input type="text" placeholder="Full Name">
+                                        <input name="full_name" type="text" placeholder="Full Name">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6 col-md-6">
                                     <div class="email-input">
-                                        <input type="email" placeholder="Email Address">
+                                        <input name="email" type="email" placeholder="Email Address">
                                     </div>
                                 </div>
                             </div>
@@ -45,13 +47,13 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <div class="website-input">
-                                        <input type="url" placeholder="Website">
+                                        <input name="website" type="url" placeholder="Website">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6 col-md-6">
                                     <div class="subject-input">
-                                        <input type="text" placeholder="Subject">
+                                        <input name="subject" type="text" placeholder="Subject">
                                     </div>
                                 </div>
                             </div>

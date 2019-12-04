@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
-from .models import Car, ModelOfCar
+from .models import Car, ModelOfCar, Contact
 from .forms import UserRegisterForm, UserUpdateForm, BankCardForm, DriverLicenseForm
 from django.contrib.auth.decorators import login_required
 
@@ -50,6 +50,18 @@ def cars(request):
     return render(request,'ourApp/car-without-sidebar.html',context=context)
 
 def contact(request):
+    if request.method == 'POST':
+        try:
+            full_name = request.POST["full_name"]
+            email = request.POST["email"]
+            website = request.POST["website"]
+            subject = request.POST["subject"]
+            message = request.POST.get("review")
+
+            contact = Contact(full_name=full_name, email_address=email, website=website, subject=subject, message=message)
+            contact.save()
+        except:
+            print("message can't be send")
     return render(request,'ourApp/contact.html')
 
 def login(request):
