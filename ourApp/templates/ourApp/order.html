@@ -38,20 +38,21 @@
                                     <div class="pickup-location book-item">
                                         <h4>PICK-UP LOCATION:</h4>
                                         <select class="custom-select">
-                                          <option selected>Select</option>
-                                          <option value="1">Dhaka</option>
-                                          <option value="2">Comilla</option>
-                                          <option value="3">Barishal</option>
-                                          <option value="3">Rangpur</option>
-                                        </select>
+                                          <option selected>{{location}}</option>
+                                          {% for city in citys %}
+                                          {%if city.name != location%}
+                                          <option value="{{city.name}}">{{city.name}}</option>
+                                          {%endif%}
+                                          {%endfor%}
+                                          </select>
                                    </div>
                                    <div class="pick-up-date book-item">
                                        <h4>PICK-UP DATE:</h4>
-                                       <input id="startDate" placeholder="Pick Up Date" />
+                                       <input id="startDate" placeholder="Pick Up Date" value="{{pickdate}}"></input>
 
                                        <div class="return-car">
                                            <h4>Return DATE:</h4>
-                                           <input id="endDate" placeholder="Return Date" />
+                                           <input id="endDate" placeholder="Return Date" value="{{returndate}}"></input>
                                        </div>
                                    </div>
                                    <!--== Pick Up Location ==-->
@@ -132,10 +133,39 @@
                 </div>
                 <!-- Sidebar Area End -->
 
-
-
                 <!-- Car List Content Start -->
                 <div class="col-lg-8">
+
+                  <div class="slideshow-container">
+                    <div clss="mySlides fade">
+                      <div class="numbertext">1/3</div>
+                      <a class="car-hover" href="{{car.picture_id.userImg.url}}">
+                          <img src="{% static 'ourApp/img/partner/partner-logo-4.png'%}" alt="JSOFT">
+                      </a>
+                      <div class="text">Text</div>
+                    </div>
+
+                    <div clss="mySlides fade">
+                      <div class="numbertext">1/3</div>
+                      <a class="car-hover" href="{{car.picture_id.userImg.url}}">
+                          <img src="{% static 'ourApp/img/partner/partner-logo-4.png'%}" alt="JSOFT">
+                      </a>
+                      <div class="text">Text</div>
+                    </div>
+
+                    <div clss="mySlides fade">
+                      <div class="numbertext">1/3</div>
+                      <a class="car-hover" href="{{car.picture_id.userImg.url}}">
+                          <img src="{% static 'ourApp/img/partner/partner-logo-4.png'%}" alt="JSOFT">
+                      </a>
+                      <div class="text">Text</div>
+                    </div>
+
+                    <a class="prev" onclick="plusSlides(-1)">&#10094</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095</a>
+                  </div>
+
+
                     <div class="car-list-content m-t-50">
                         <!-- Single Car Start -->
 

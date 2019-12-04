@@ -14,31 +14,30 @@
                                 <p>FOR AS LOW AS $10 A DAY PLUS 15% DISCOUNT <br> FOR OUR RETURNING CUSTOMERS</p>
 
                                 <div class="book-ur-car">
-                                    <form action="{% url 'order'%}" style="padding-left:120px">
-
-
+                                    <form action="{% url 'order'%}" style="padding-left:120px" method="post">
+                                        {% csrf_token %}
                                         <div class="pick-location bookinput-item">
-                                            <select class="custom-select">
+                                            <select class="custom-select" name="location">
                                               <option selected>Pick Location</option>
-                                              <option value="1">Nur-sultan</option>
-                                              <option value="2">Almaty</option>
-                                              <option value="3">Taldykorgan</option>
-                                              <option value="3">Ust-Kamenogors</option>
+                                              {% for city in citys %}
+                                                <option value="{{city.name}}">{{city.name}}</option>
+                                              {%endfor%}
                                             </select>
                                         </div>
 
                                         <div class="pick-date bookinput-item">
-                                            <input id="startDate2" placeholder="Pick Date" />
+                                            <input id="startDate2" name="pick_date" placeholder="Pick Date" />
                                         </div>
 
                                         <div class="retern-date bookinput-item">
-                                            <input id="endDate2" placeholder="Return Date" />
+                                            <input id="endDate2" name="return_date" placeholder="Return Date" />
                                         </div>
 
                                         <div class="bookcar-btn bookinput-item">
-                                            <button type="submit">Book Car</button>
+                                            <button type="submit" name="bookcar">Book Car</button>
                                         </div>
                                     </form>
+
                                 </div>
                             </div>
                         </div>

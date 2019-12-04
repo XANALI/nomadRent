@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
-from .models import Car, ModelOfCar
+from .models import Car, ModelOfCar, City
 from .forms import UserRegisterForm, UserUpdateForm, BankCardForm, DriverLicenseForm
 from django.contrib.auth.decorators import login_required
 
@@ -11,7 +11,9 @@ from django.core.paginator import Paginator
 def index(request):
     cars = Car.objects.all()
     models = ModelOfCar.objects.all()
-    return render(request,'ourApp/index2.html',{'cars':cars,'models':models})
+    citys=City.objects.all()
+
+    return render(request,'ourApp/index2.html',{'cars':cars,'models':models, 'citys':citys})
 
 def about(request):
     return render(request,'ourApp/about.html')
@@ -84,9 +86,13 @@ def profile(request):
 
 def order(request):
     cars=Car.objects.all()
-    paginator=Paginator(cars,5)
+    paginator=Paginator(cars,2)
     page_number=request.GET.get('page',1)
     page=paginator.get_page(page_number)
+    citys=City.objects.all()
+    location=''
+    pickdate=''
+    returndate=''
 
     is_paginated=page.has_other_pages()
 
@@ -100,11 +106,24 @@ def order(request):
     else:
         next_url=''
 
+    if request.method=="POST":
+        try:
+            location=request.POST['location']
+            pickdate=request.POST['pick_date']
+            returndate=request.POST['return_date']
+            print(location)
+        except:
+            print('the comments cannot be added')
+
     context={
         'page_object':page,
         'is_paginated':is_paginated,
         'next_url':next_url,
-        'prev_url':prev_url
+        'prev_url':prev_url,
+        'location':location,
+        'pickdate':pickdate,
+        'returndate':returndate,
+        'citys':citys
     }
 
     return render(request,'ourApp/order.html', context=context)
