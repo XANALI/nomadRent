@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
-from .models import Car, ModelOfCar, City
+from .models import Car, ModelOfCar, Contact,City
 from .forms import UserRegisterForm, UserUpdateForm, BankCardForm, DriverLicenseForm
 from django.contrib.auth.decorators import login_required
 
@@ -52,6 +52,18 @@ def cars(request):
     return render(request,'ourApp/car-without-sidebar.html',context=context)
 
 def contact(request):
+    if request.method == 'POST':
+        try:
+            full_name = request.POST["full_name"]
+            email = request.POST["email"]
+            website = request.POST["website"]
+            subject = request.POST["subject"]
+            message = request.POST.get("review")
+
+            contact = Contact(full_name=full_name, email_address=email, website=website, subject=subject, message=message)
+            contact.save()
+        except:
+            print("message can't be send")
     return render(request,'ourApp/contact.html')
 
 def login(request):
@@ -130,16 +142,25 @@ def order(request):
 
 def confirmation(request):
     if request.method == 'POST':
-        bank_card_form = BankCardForm(request.POST, instance=request.user.bank_card_id)
-        driver_license_form = DriverLicenseForm(request.POST, request.FILES, instance=request.user.license_id)
+        if request.user.is_authenticated:
+            bank_card_form = BankCardForm(request.POST, instance=request.user.bank_card_id)
+            driver_license_form = DriverLicenseForm(request.POST, request.FILES, instance=request.user.license_id)
+        else:
+            bank_card_form = BankCardForm(request.POST)
+            driver_license_form = DriverLicenseForm(request.POST, request.FILES)
+
         if bank_card_form.is_valid() and driver_license_form.is_valid():
             bank_card_form.save()
             driver_license_form.save()
             return redirect('index')
 
     else:
-        bank_card_form = BankCardForm(instance=request.user.bank_card_id)
-        driver_license_form = DriverLicenseForm(instance=request.user.license_id)
+        if request.user.is_authenticated:
+            bank_card_form = BankCardForm(instance=request.user.bank_card_id)
+            driver_license_form = DriverLicenseForm(instance=request.user.license_id)
+        else:
+            bank_card_form = BankCardForm()
+            driver_license_form = DriverLicenseForm()
 
     context = {
         'bank_card_form':bank_card_form,
