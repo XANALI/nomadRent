@@ -126,8 +126,18 @@ def order(request):
             print(location)
         except:
             print('the comments cannot be added')
+    elif request.method=="GET":
+        try:
+            location=request.GET['location']
+            pickdate=request.GET['pickdate']
+            returndate=request.GET['returndate']
+            print(location)
+        except:
+            print('the comments cannot be added')
+
 
     context={
+        'cars':cars,
         'page_object':page,
         'is_paginated':is_paginated,
         'next_url':next_url,
