@@ -38,7 +38,7 @@
                                     <div class="pickup-location book-item">
                                         <h4>PICK-UP LOCATION:</h4>
                                         <select class="custom-select">
-                                          <option selected>{{location}}</option>
+                                          <option value="{{location}}"selected>{{location}}</option>
                                           {% for city in citys %}
                                           {%if city.name != location%}
                                           <option value="{{city.name}}">{{city.name}}</option>
@@ -58,7 +58,9 @@
                                    <!--== Pick Up Location ==-->
 
                                    <!--== Car Choose ==-->
-
+                                   <div class="bookcar-button">
+                                       <button type="submit" name="bookcar">Search</button>
+                                   </div>
                                    <!--== Car Choose ==-->
                                 </form>
                         </div>
@@ -72,42 +74,40 @@
                             <div class="sidebar-body">
                                 <ul class="recent-tips">
                                     <li class="single-recent-tips">
+                                        <h6 class="text-center">Kansha benzin kurtady</h6>
                                         <div class="recent-tip-thum">
-                                            <a href="#"><img src="{% static 'ourApp/img/we-do/service1-img.png'%}" alt="JSOFT"></a>
-                                        </div>
-                                        <input type="checkbox" id="shest001">
-
-
-                                    </li>
-
-                                    <li class="single-recent-tips">
-                                        <div class="recent-tip-thum">
-                                            <a href="#"><img src="assets/img/we-do/service3-img.png" alt="JSOFT"></a>
+                                          <input type="checkbox" id="shest001">
                                         </div>
                                         <div class="recent-tip-body">
-                                            <h4><a href="#">How to Enjoy Losses Angeles Car Rentals</a></h4>
-                                            <span class="date">February 5, 2018</span>
+                                            <p style="font-size:15px">10 litrdan az</p>
                                         </div>
                                     </li>
 
                                     <li class="single-recent-tips">
                                         <div class="recent-tip-thum">
-                                            <a href="#"><img src="assets/img/we-do/service2-img.png" alt="JSOFT"></a>
+                                            <input type="checkbox" id="shest001">
                                         </div>
                                         <div class="recent-tip-body">
-                                            <h4><a href="#">How to Enjoy Losses Angeles Car Rentals</a></h4>
-                                            <span class="date">February 5, 2018</span>
+                                          <p style="font-size:15px">10 litrdan kop</p>
                                         </div>
                                     </li>
 
                                     <li class="single-recent-tips">
-                                        <div class="recent-tip-thum">
-                                            <a href="#"><img src="assets/img/we-do/service3-img.png" alt="JSOFT"></a>
-                                        </div>
-                                        <div class="recent-tip-body">
-                                            <h4><a href="#">How to Enjoy Losses Angeles Car Rentals</a></h4>
-                                            <span class="date">February 5, 2018</span>
-                                        </div>
+                                      <div class="recent-tip-thum">
+                                          <input type="checkbox" id="shest001">
+                                      </div>
+                                      <div class="recent-tip-body">
+                                          <p></p>
+                                      </div>
+                                    </li>
+
+                                    <li class="single-recent-tips">
+                                      <div class="recent-tip-thum">
+                                          <input type="checkbox" id="shest001">
+                                      </div>
+                                      <div class="recent-tip-body">
+                                          <p></p>
+                                      </div>
                                     </li>
                                 </ul>
                             </div>

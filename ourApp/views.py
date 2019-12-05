@@ -126,7 +126,8 @@ def order(request):
             print(location)
         except:
             print('the comments cannot be added')
-
+    else:
+        print(location)
     context={
         'page_object':page,
         'is_paginated':is_paginated,

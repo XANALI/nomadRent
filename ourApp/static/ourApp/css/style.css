@@ -1644,6 +1644,10 @@ body,
 	background-color: transparent;
 }
 
+.bookcar-button button{
+	margin-left: 100px;
+}
+
 .bookcar-btn button {
 	padding: 7px;
 	cursor: pointer;
