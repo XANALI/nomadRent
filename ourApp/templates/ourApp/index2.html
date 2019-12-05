@@ -18,7 +18,7 @@
                                         {% csrf_token %}
                                         <div class="pick-location bookinput-item">
                                             <select class="custom-select" name="location">
-                                              <option selected>Pick Location</option>
+                                              <option disabled="disabled" selected>Pick Location</option>
                                               {% for city in citys %}
                                                 <option value="{{city.name}}">{{city.name}}</option>
                                               {%endfor%}
