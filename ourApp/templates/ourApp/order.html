@@ -137,8 +137,8 @@
 
                     <div class="car-list-content m-t-50">
                         <!-- Single Car Start -->
-
-                        {% for car in cars %}
+                        {% if cars_location %}
+                        {% for car in cars_location %}
                         <div class="single-car-wrap">
                             <div class="row">
                                 <!-- Single Car Thumbnail -->
@@ -184,6 +184,9 @@
                         </div>
                         <!-- Single Car End -->
                         {% endfor %}
+                        {% else %}
+                        <h1>{{Empty}}</h1>
+                        {%endif%}
                         <!-- Single Car Start -->
 
 

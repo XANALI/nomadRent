@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
-from .models import Car, ModelOfCar, Contact,City
+from .models import *
 from .forms import UserRegisterForm, UserUpdateForm, BankCardForm, DriverLicenseForm
 from django.contrib.auth.decorators import login_required
 
@@ -118,37 +118,48 @@ def order(request):
     else:
         next_url=''
 
+
     if request.method=="POST":
         try:
             location=request.POST['location']
-            pickdate=request.POST['pick_date']
-            returndate=request.POST['return_date']
-            print(location)
+            pickdate=request.POST['pickdate']
+            returndate=request.POST['returndate']
+            cars_location=Car.objects.filter(city_id=City.objects.get(name__icontains=location))
+            pickdate=convert(pickdate)
+            context={
+                'cars':cars,
+                'page_object':page,
+                'is_paginated':is_paginated,
+                'next_url':next_url,
+                'prev_url':prev_url,
+                'location':location,
+                'pickdate':pickdate,
+                'returndate':returndate,
+                'citys':citys,
+                'cars_location':cars_location,
+                'order':order
+            }
+            return render(request,'ourApp/order.html',context=context)
         except:
-            print('the comments cannot be added')
-    elif request.method=="GET":
-        try:
-            location=request.GET['location']
-            pickdate=request.GET['pickdate']
-            returndate=request.GET['returndate']
-            print(location)
-        except:
+            return render(request,'ourApp/order.html',{'Empty':"No cars in this location",'cars':cars,'citys':citys})
             print('the comments cannot be added')
 
+    def convert(date):
+        step=1
+        y=""
+        m=""
+        d=""
+        for i in date:
+            if i!='/' and step==1:
+                m=m+i
+            elif i!='/' and step==2:
+                d=d+i
+            elif step==3:
+                y=y+i
+            else:
+                step=step+1
+        return "%s-%s-%s"%(y,m,d)
 
-    context={
-        'cars':cars,
-        'page_object':page,
-        'is_paginated':is_paginated,
-        'next_url':next_url,
-        'prev_url':prev_url,
-        'location':location,
-        'pickdate':pickdate,
-        'returndate':returndate,
-        'citys':citys
-    }
-
-    return render(request,'ourApp/order.html', context=context)
 
 def confirmation(request):
     if request.method == 'POST':
