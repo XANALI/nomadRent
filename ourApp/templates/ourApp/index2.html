@@ -17,7 +17,7 @@
                                     <form action="{% url 'order'%}" style="padding-left:120px" method="post">
                                         {% csrf_token %}
                                         <div class="pick-location bookinput-item">
-                                            <select class="custom-select" name="location">
+                                            <select class="custom-select" name="location" placeholder="">
                                               <option disabled="disabled" selected>Pick Location</option>
                                               {% for city in citys %}
                                                 <option value="{{city.name}}">{{city.name}}</option>
@@ -26,11 +26,11 @@
                                         </div>
 
                                         <div class="pick-date bookinput-item">
-                                            <input id="startDate2" name="pick_date" placeholder="Pick Date" />
+                                            <input id="startDate2" type="text" name="pickdate" placeholder="Pick Date" />
                                         </div>
 
                                         <div class="retern-date bookinput-item">
-                                            <input id="endDate2" name="return_date" placeholder="Return Date" />
+                                            <input id="endDate2" name="returndate" placeholder="Return Date" />
                                         </div>
 
                                         <div class="bookcar-btn bookinput-item">
