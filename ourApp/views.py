@@ -18,6 +18,7 @@ def index(request):
 def about(request):
     return render(request,'ourApp/about.html')
 
+
 def get_by_id(request, car_id):
     return HttpResponse(Car.objects.get(id=car_id))
 
