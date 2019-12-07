@@ -72,6 +72,8 @@ class Car(models.Model):
     model_id = models.ForeignKey(ModelOfCar, on_delete=models.CASCADE, default=1)
     model_year = models.IntegerField()
     price_hourly = models.FloatField()
+    start_date = models.DateTimeField('starting date',null=True, blank=True)
+    end_date = models.DateTimeField('ending date',null=True, blank=True)
     available = models.BooleanField()
     rate = models.IntegerField(default=0)
     engine_id = models.ForeignKey(Engine, on_delete=models.CASCADE,default=1)
@@ -110,8 +112,6 @@ class SimpleUser(AbstractUser):
 class Order(models.Model):
     car_id = models.ForeignKey(Car, on_delete=models.CASCADE, default=0)
     user_id = models.ForeignKey(SimpleUser, on_delete=models.CASCADE, default=0)
-    start_date = models.DateTimeField('starting date')
-    end_date = models.DateTimeField('ending date')
     approves = models.BooleanField()
     finished = models.BooleanField()
     canceled = models.BooleanField()

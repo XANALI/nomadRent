@@ -120,14 +120,15 @@ def order(request):
         next_url=''
 
 
+
+
     if request.method=="POST":
         try:
             location=request.POST['location']
             pickdate=request.POST['pickdate']
             returndate=request.POST['returndate']
-            cars_location=Car.objects.filter(city_id=City.objects.get(name__contains=location))
-            pickdate=convert(pickdate)
-            request.session['location'] = location
+            cars_location=Car.objects.filter(city_id=City.objects.get(name__icontains=location),available=True)
+            #cars_location=Car.objects.filter(rate=5).delete()
             context={
                 'cars':cars,
                 'page_object':page,
@@ -148,21 +149,21 @@ def order(request):
     else:
         return render(request,'ourApp/order.html')
 
-    def convert(date):
-        step=1
-        y=""
-        m=""
-        d=""
-        for i in date:
-            if i!='/' and step==1:
-                m=m+i
-            elif i!='/' and step==2:
-                d=d+i
-            elif step==3:
-                y=y+i
-            else:
-                step=step+1
-        return "%s-%s-%s"%(y,m,d)
+def convert(pickdate):
+    step=1
+    y=""
+    m=""
+    d=""
+    for i in pickdate:
+        if i!='/' and step==1:
+            m=m+i
+        elif i!='/' and step==2:
+            d=d+i
+        elif step==3:
+            y=y+i
+        else:
+            step+=1
+    return "%s-%s-%s"%(y,m,d)
 
 
 def confirmation(request):

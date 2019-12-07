@@ -33,26 +33,27 @@
                             <h3>For More Informations</h3>
 
                             <div class="book-a-car" style="margin-top:0px">
-                                <form action="{% url 'index' %}">
+                                <form action="{% url 'order'%}" method="post">
+                                  {% csrf_token %}
                                     <!--== Pick Up Location ==-->
                                     <div class="pickup-location book-item">
                                         <h4>PICK-UP LOCATION:</h4>
-                                        <select class="custom-select">
+                                        <select class="custom-select" name="location" placeholder="">
                                           <option value="{{location}}"selected>{{location}}</option>
                                           {% for city in citys %}
-                                          {%if city.name != location%}
-                                          <option value="{{city.name}}">{{city.name}}</option>
-                                          {%endif%}
+                                            {%if city.name != location%}
+                                              <option value="{{city.name}}">{{city.name}}</option>
+                                              {%endif%}
                                           {%endfor%}
                                           </select>
                                    </div>
                                    <div class="pick-up-date book-item">
                                        <h4>PICK-UP DATE:</h4>
-                                       <input id="startDate" placeholder="Pick Up Date" value="{{pickdate}}"></input>
+                                       <input id="startDate" placeholder="Pick Up Date" name="pickdate" value="{{pickdate}}"></input>
 
                                        <div class="return-car">
                                            <h4>Return DATE:</h4>
-                                           <input id="endDate" placeholder="Return Date" value="{{returndate}}"></input>
+                                           <input id="endDate" placeholder="Return Date" name="returndate" value="{{returndate}}"></input>
                                        </div>
                                    </div>
                                    <!--== Pick Up Location ==-->
