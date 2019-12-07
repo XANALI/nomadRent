@@ -125,8 +125,9 @@ def order(request):
             location=request.POST['location']
             pickdate=request.POST['pickdate']
             returndate=request.POST['returndate']
-            cars_location=Car.objects.filter(city_id=City.objects.get(name__icontains=location))
+            cars_location=Car.objects.filter(city_id=City.objects.get(name__contains=location))
             pickdate=convert(pickdate)
+            request.session['location'] = location
             context={
                 'cars':cars,
                 'page_object':page,
@@ -144,6 +145,8 @@ def order(request):
         except:
             return render(request,'ourApp/order.html',{'Empty':"No cars in this location",'cars':cars,'citys':citys})
             print('the comments cannot be added')
+    else:
+        return render(request,'ourApp/order.html')
 
     def convert(date):
         step=1
