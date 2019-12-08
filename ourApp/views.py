@@ -104,6 +104,7 @@ def addBook(request, location):
 
 def order(request):
     cars=Car.objects.all()
+    models = ModelOfCar.objects.all()
     paginator=Paginator(cars,2)
     page_number=request.GET.get('page',1)
     page=paginator.get_page(page_number)
@@ -124,9 +125,6 @@ def order(request):
     else:
         next_url=''
 
-
-
-
     if request.method=="POST":
         try:
             location=request.POST['location']
@@ -146,7 +144,8 @@ def order(request):
                 'returndate':returndate,
                 'citys':citys,
                 'cars_location':cars_location,
-                'order':order
+                'order':order,
+                'models':models
             }
             return render(request,'ourApp/order.html',context=context)
         except:

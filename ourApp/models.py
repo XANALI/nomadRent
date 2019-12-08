@@ -30,7 +30,7 @@ class FuelType(models.Model):
 
 class ModelOfCar(models.Model):
     name = models.CharField(max_length=200)
-
+    modelImg=models.ImageField(upload_to='car_pictures/',default='/static/car/car-default.jpg')
     def __str__(self):
         return self.name
 
