@@ -46,17 +46,51 @@ class UserUpdateForm(forms.ModelForm):
         return user
 
 class BankCardForm(forms.ModelForm):
-    expire_date = forms.DateField(initial=datetime.date.today)
+    __MONTH_CHOICES = (
+        (1, '01'),
+        (2, '02'),
+        (3, '03'),
+        (4, '04'),
+        (5, '05'),
+        (6, '06'),
+        (7, '07'),
+        (8, '08'),
+        (9, '09'),
+        (10, '10'),
+        (11, '11'),
+        (12, '12'),
+    )
+
+    __YEAR_CHOICES = (
+        (2020, '2020'),
+        (2021, '2021'),
+        (2022, '2022'),
+        (2023, '2023'),
+        (2024, '2024'),
+        (2025, '2025'),
+        (2026, '2026'),
+        (2027, '2027'),
+        (2028, '2028'),
+        (2029, '2029'),
+        (2030, '2030'),
+    )
+    full_name = forms.CharField(max_length=64, label='Name as on card')
+    card_numbers = forms.CharField(max_length=16, label='Credit Card Number')
+    expiration_month = forms.ChoiceField(choices=__MONTH_CHOICES)
+    expiration_year = forms.ChoiceField(choices=__YEAR_CHOICES)
+    cvv_code = forms.CharField(max_length=4, label='CVV')
+    country = forms.CharField(max_length=200)
 
     class Meta:
         model = BankCard
-        fields = ['full_name', 'card_numbers', 'expire_date', 'cvv_code', 'country']
+        fields = ['full_name', 'card_numbers', 'expiration_month', 'expiration_year', 'cvv_code', 'country']
 
     def save(self, commit=True):
         bank_card = super(BankCardForm, self).save(commit = False)
         bank_card.full_name = self.cleaned_data['full_name']
         bank_card.card_numbers = self.cleaned_data['card_numbers']
-        bank_card.expiration_date = self.cleaned_data['expire_date']
+        bank_card.expiration_month = self.cleaned_data['expiration_month']
+        bank_card.expiration_year = self.cleaned_data['expiration_year']
         bank_card.cvv_code = self.cleaned_data['cvv_code']
         bank_card.country = self.cleaned_data['country']
 

@@ -45,21 +45,23 @@ class City(models.Model):
         return self.name
 
 class BankCard(models.Model):
-    full_name = models.CharField(max_length=200)
-    card_numbers = models.CharField(max_length=200)
-    expiration_date = models.DateTimeField('expiration date', null=True, blank=True)
-    cvv_code = models.IntegerField()
+    full_name = models.CharField(max_length=64)
+    card_numbers = models.CharField(max_length=16)
+    expiration_month = models.CharField(max_length=10, null=True)
+    expiration_year = models.CharField(max_length=4, null=True)
+    cvv_code = models.CharField(max_length=4)
     country = models.CharField(max_length=200)
 
     def __str__(self):
         return self.full_name
+
 
 class DriverLicense(models.Model):
     license_picture = models.ImageField(upload_to='license_pictures/', default='NULL')
 
 class Contact(models.Model):
     full_name = models.CharField(max_length=200)
-    email_address = models.CharField(max_length=200)
+    email_address = models.EmailField(max_length=200)
     website = models.CharField(max_length=200)
     subject = models.CharField(max_length=200)
     message = models.CharField(max_length=200)
@@ -92,8 +94,8 @@ class SimpleUser(AbstractUser):
     birth_date = models.DateTimeField('date of birth', null=True, blank=True)
     address = models.CharField(default='NULL',max_length=200)
     userImg = models.ImageField(upload_to='user_avas/', default='user_avas/default.jpg')
-    bank_card_id = models.ForeignKey(BankCard, on_delete=models.CASCADE, default=1)
-    license_id = models.ForeignKey(DriverLicense, on_delete=models.CASCADE, default=1)
+    bank_card_id = models.ForeignKey(BankCard, on_delete=models.PROTECT, default=0)
+    license_id = models.ForeignKey(DriverLicense, on_delete=models.PROTECT, default=0)
 
     def was_born_date(self):
         return self.birth_date >= timezone.now() - datetime.timedelta(days=1)
@@ -117,5 +119,6 @@ class Order(models.Model):
     canceled = models.BooleanField()
     total_price = models.IntegerField(default=0)
     rate = models.IntegerField(default=0)
-    bank_card_id = models.ForeignKey(BankCard, on_delete=models.CASCADE, default=0)
-    license_id = models.ForeignKey(DriverLicense, on_delete=models.CASCADE, default=0)
+    bank_card_id = models.ForeignKey(BankCard, on_delete=models.SET_NULL, null=True, blank=True)
+    license_id = models.ForeignKey(DriverLicense, on_delete=models.SET_NULL, null=True, blank=True)
+    email_address = models.EmailField(max_length=20, null=True)

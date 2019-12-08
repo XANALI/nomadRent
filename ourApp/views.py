@@ -173,9 +173,11 @@ def convert(pickdate):
 
 
 def confirmation(request):
+    '''
     location=''
     location= request.session['location']
     print(location)
+    '''
     if request.method == 'POST':
         if request.user.is_authenticated:
             bank_card_form = BankCardForm(request.POST, instance=request.user.bank_card_id)
