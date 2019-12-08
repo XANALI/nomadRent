@@ -172,21 +172,35 @@ def convert(pickdate):
 def confirmation(request):
     if request.method == 'POST':
         if request.user.is_authenticated:
-            bank_card_form = BankCardForm(request.POST, instance=request.user.bank_card_id)
-            driver_license_form = DriverLicenseForm(request.POST, request.FILES, instance=request.user.license_id)
+            if request.user.bank_card_id.pk != 1 and request.user.license_id.pk != 1:
+                bank_card_form = BankCardForm(request.POST, instance=request.user.bank_card_id)
+                driver_license_form = DriverLicenseForm(request.POST, request.FILES, instance=request.user.license_id)
+            else:
+                bank_card_form = BankCardForm(request.POST)
+                driver_license_form = DriverLicenseForm(request.POST, request.FILES)
         else:
             bank_card_form = BankCardForm(request.POST)
             driver_license_form = DriverLicenseForm(request.POST, request.FILES)
 
         if bank_card_form.is_valid() and driver_license_form.is_valid():
-            bank_card_form.save()
-            driver_license_form.save()
+            if request.user.bank_card_id.pk == 1 and request.user.license_id.pk == 1:
+                print('a')
+                request.user.bank_card_id = bank_card_form.save()
+                request.user.license_id = driver_license_form.save()
+                request.user.save()
+            else:
+                bank_card_form.save()
+                driver_license_form.save()
             return redirect('index')
 
     else:
-        if request.user.is_authenticated:
-            bank_card_form = BankCardForm(instance=request.user.bank_card_id)
-            driver_license_form = DriverLicenseForm(instance=request.user.license_id)
+        if request.user.is_authenticated :
+            if request.user.bank_card_id.pk == 1 and request.user.license_id.pk == 1:
+                bank_card_form = BankCardForm()
+                driver_license_form = DriverLicenseForm()
+            else:
+                bank_card_form = BankCardForm(instance=request.user.bank_card_id)
+                driver_license_form = DriverLicenseForm(instance=request.user.license_id)
         else:
             bank_card_form = BankCardForm()
             driver_license_form = DriverLicenseForm()
