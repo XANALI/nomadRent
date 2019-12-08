@@ -94,8 +94,8 @@ class SimpleUser(AbstractUser):
     birth_date = models.DateTimeField('date of birth', null=True, blank=True)
     address = models.CharField(default='NULL',max_length=200)
     userImg = models.ImageField(upload_to='user_avas/', default='user_avas/default.jpg')
-    bank_card_id = models.ForeignKey(BankCard, on_delete=models.PROTECT, default=0)
-    license_id = models.ForeignKey(DriverLicense, on_delete=models.PROTECT, default=0)
+    bank_card_id = models.ForeignKey(BankCard, on_delete=models.PROTECT, default=1)
+    license_id = models.ForeignKey(DriverLicense, on_delete=models.PROTECT, default=1)
 
     def was_born_date(self):
         return self.birth_date >= timezone.now() - datetime.timedelta(days=1)
@@ -119,6 +119,6 @@ class Order(models.Model):
     canceled = models.BooleanField()
     total_price = models.IntegerField(default=0)
     rate = models.IntegerField(default=0)
-    bank_card_id = models.ForeignKey(BankCard, on_delete=models.SET_NULL, null=True, blank=True)
-    license_id = models.ForeignKey(DriverLicense, on_delete=models.SET_NULL, null=True, blank=True)
+    bank_card_id = models.ForeignKey(BankCard, on_delete=models.PROTECT, default=1)
+    license_id = models.ForeignKey(DriverLicense, on_delete=models.PROTECT, default=1)
     email_address = models.EmailField(max_length=20, null=True)
