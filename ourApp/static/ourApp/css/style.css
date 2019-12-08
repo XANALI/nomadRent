@@ -3254,3 +3254,49 @@ body,
 	opacity: 1;
 	visibility: visible;
 }
+
+.cars-type {
+	-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+	color: #222;
+	margin-bottom: 30px;
+	margin-right: 5px;
+	margin-left: 5px;
+	padding: 45px 25px;
+	border: 1px solid #ffd000;
+}
+
+.typecar-btn button {
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+	border: 1px solid #ffd000;
+	background-color: rgba(0, 0, 0, 0.001);
+}
+
+.typecar-btn:hover {
+	background-color: #ffd000;
+	border-color: #ffd000;
+}
+
+.bookinput-item2 {
+	border: 1px solid #fff;
+	display: block;
+	float: left;
+	margin-right: 1%;
+	width: 19.2%;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+	margin: 7px 7px;
+	padding:0px;
+}
+
+.bookinput-item2:last-child {
+	margin-right: 0;
+}
+
+ .row-pad{
+	 display:inline-block;
+ }
