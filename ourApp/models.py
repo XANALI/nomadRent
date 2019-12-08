@@ -61,7 +61,7 @@ class DriverLicense(models.Model):
 
 class Contact(models.Model):
     full_name = models.CharField(max_length=200)
-    email_address = models.EmailField(max_length=200)
+    email_address = models.CharField(max_length=200)
     website = models.CharField(max_length=200)
     subject = models.CharField(max_length=200)
     message = models.CharField(max_length=200)

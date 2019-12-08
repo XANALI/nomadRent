@@ -4,7 +4,8 @@ from django.contrib import messages
 from .models import *
 from .forms import UserRegisterForm, UserUpdateForm, BankCardForm, DriverLicenseForm
 from django.contrib.auth.decorators import login_required
-
+from carRental.settings import EMAIL_HOST_USER
+from django.core.mail import send_mail
 from django.core.paginator import Paginator
 # Create your views here.
 
@@ -52,6 +53,13 @@ def cars(request):
 
     return render(request,'ourApp/car-without-sidebar.html',context=context)
 
+def send_confirm_for_contact(email, full_name, subject):
+    subject = 'Welcome to NomadRent'
+    message = 'Dear, ' + full_name + '. We received your contact message about ' + subject + ' .'
+    recepient = email
+    print(a)
+    send_mail(subject, message, EMAIL_HOST_USER, [recepient], fail_silently = False)
+
 def contact(request):
     if request.method == 'POST':
         try:
@@ -59,10 +67,11 @@ def contact(request):
             email = request.POST["email"]
             website = request.POST["website"]
             subject = request.POST["subject"]
-            message = request.POST.get("review")
-
+            message = request.POST.get('review','')
+            print(full_name + email + website + subject + message)
             contact = Contact(full_name=full_name, email_address=email, website=website, subject=subject, message=message)
-            contact.save()
+            if contact.is_valid():
+                contact.save()
         except:
             print("message can't be send")
     return render(request,'ourApp/contact.html')
@@ -125,7 +134,6 @@ def order(request):
             pickdate=request.POST['pickdate']
             returndate=request.POST['returndate']
             cars_location=Car.objects.filter(city_id=City.objects.get(name__icontains=location),available=True)
-            addBook(request, location)
             #cars_location=Car.objects.filter(rate=5).delete()
             context={
                 'cars':cars,
