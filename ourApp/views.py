@@ -127,7 +127,7 @@ def order(request):
             pickdate=request.POST['pickdate']
             returndate=request.POST['returndate']
             cars_location=Car.objects.filter(city_id=City.objects.get(name__icontains=location),available=True)
-            
+
             #cars_location=Car.objects.filter(rate=5).delete()
             context={
                 'cars':cars,
@@ -168,9 +168,6 @@ def convert(pickdate):
 
 
 def confirmation(request):
-    location=''
-    location= request.session['location']
-    print(location)
     if request.method == 'POST':
         if request.user.is_authenticated:
             bank_card_form = BankCardForm(request.POST, instance=request.user.bank_card_id)
