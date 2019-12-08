@@ -1,5 +1,5 @@
 from django import forms
-from .models import SimpleUser, BankCard, DriverLicense
+from .models import SimpleUser, BankCard, DriverLicense, Contact
 from django.contrib.auth.forms import UserCreationForm
 from PIL import Image
 import datetime
@@ -114,3 +114,21 @@ class DriverLicenseForm(forms.ModelForm):
             driver_license.save()
 
         return driver_license
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = ['full_name', 'email_address', 'website', 'subject', 'message']
+
+    def save(self, commit=True):
+        contact = super(ContactForm, self).save(commit = False)
+        contact.full_name = self.cleaned_data['full_name']
+        contact.email_address = self.cleaned_data['email_address']
+        contact.website = self.cleaned_data['website']
+        contact.subject = self.cleaned_data['subject']
+        contact.message = self.cleaned_data['message']
+
+        if commit:
+            contact.save()
+
+        return contact

@@ -60,11 +60,11 @@ class DriverLicense(models.Model):
     license_picture = models.ImageField(upload_to='license_pictures/', default='NULL')
 
 class Contact(models.Model):
-    full_name = models.CharField(max_length=200)
-    email_address = models.CharField(max_length=200)
+    full_name = models.CharField(max_length=30)
+    email_address = models.EmailField(max_length=30)
     website = models.CharField(max_length=200)
     subject = models.CharField(max_length=200)
-    message = models.CharField(max_length=200)
+    message = models.TextField(max_length=200)
 
     def __str__(self):
         return self.full_name

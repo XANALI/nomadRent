@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from .models import *
-from .forms import UserRegisterForm, UserUpdateForm, BankCardForm, DriverLicenseForm
+from .forms import UserRegisterForm, UserUpdateForm, BankCardForm, DriverLicenseForm, ContactForm
 from django.contrib.auth.decorators import login_required
 from carRental.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
@@ -54,27 +54,23 @@ def cars(request):
     return render(request,'ourApp/car-without-sidebar.html',context=context)
 
 def send_confirm_for_contact(email, full_name, subject):
-    subject = 'Welcome to NomadRent'
     message = 'Dear, ' + full_name + '. We received your contact message about ' + subject + ' .'
     recepient = email
-    print(a)
     send_mail(subject, message, EMAIL_HOST_USER, [recepient], fail_silently = False)
 
 def contact(request):
     if request.method == 'POST':
-        try:
-            full_name = request.POST["full_name"]
-            email = request.POST["email"]
-            website = request.POST["website"]
-            subject = request.POST["subject"]
-            message = request.POST.get('review','')
-            print(full_name + email + website + subject + message)
-            contact = Contact(full_name=full_name, email_address=email, website=website, subject=subject, message=message)
-            if contact.is_valid():
-                contact.save()
-        except:
-            print("message can't be send")
-    return render(request,'ourApp/contact.html')
+        contact_form = ContactForm(request.POST)
+        if contact_form.is_valid():
+            contact_form.save()
+            email = contact_form.cleaned_data.get('email_address')
+            full_name = contact_form.cleaned_data.get('full_name')
+            subject = contact_form.cleaned_data.get('subject')
+            send_confirm_for_contact(email, full_name, subject)
+            return redirect('index')
+    else:
+        contact_form = ContactForm()
+    return render(request,'ourApp/contact.html', {'contact_form':contact_form})
 
 def login(request):
     return render(request,'ourApp/login.html')
