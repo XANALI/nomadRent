@@ -101,7 +101,6 @@ def addBook(request, location):
     request.session.modified = True
 
 
-
 def order(request):
     cars=Car.objects.all()
     models = ModelOfCar.objects.all()

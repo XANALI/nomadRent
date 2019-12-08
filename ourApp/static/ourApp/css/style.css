@@ -1739,7 +1739,7 @@ body,
 }
 
 .home2-car-filter a.active {
-	color: #ffd000;
+	color: #000;
 }
 
 .home2-car-filter a::after {
@@ -2255,7 +2255,7 @@ body,
 }
 
 .single-car-wrap:last-child {
-	margin-bottom: 0;
+	margin-bottom: 50px;
 }
 
 .car-thumb-1 {
@@ -3266,15 +3266,24 @@ body,
 	border: 1px solid #ffd000;
 }
 
-.typecar-btn button {
+.typecar-btn a{
 	width: 100%;
 	height: 100%;
 	cursor: pointer;
 	-webkit-transition: 0.4s;
 	transition: 0.4s;
 	border: 1px solid #ffd000;
-	background-color: rgba(0, 0, 0, 0.001);
+	background-color: : rgba(0, 0, 0, 0.001);
+	display:inline-block;
+	padding: 8px;
 }
+
+.typecar-btn a:link{
+	background:#000000;
+}
+
+.typecar-btn a:visited { color:#c0c0c0; background-color:#fafafa; }
+.typecar-btn a:active { color:##ffd000; background-color:#ffd000; }
 
 .typecar-btn:hover {
 	background-color: #ffd000;

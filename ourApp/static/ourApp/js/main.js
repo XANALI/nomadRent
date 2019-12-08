@@ -88,7 +88,6 @@
             return false;
         }); // Choose Popular Car Isotope End
 
-
         // Choose Newest Car Isotope
         $(".newcar-menu a").click(function () {
 

@@ -33,7 +33,7 @@
                             <h3>For More Informations</h3>
 
                             <div class="book-a-car" style="margin-top:0px">
-                                <form action="{% url 'order'%}" method="post">
+                              <form action=""  method="post">
                                   {% csrf_token %}
                                     <!--== Pick Up Location ==-->
                                     <div class="pickup-location book-item">
@@ -63,7 +63,7 @@
                                        <button type="submit" name="bookcar">Search</button>
                                    </div>
                                    <!--== Car Choose ==-->
-                                </form>
+                                   </form>
                         </div>
                         </div>
                         <!-- Single Sidebar End -->
@@ -134,40 +134,36 @@
                 </div>
                 <!-- Sidebar Area End -->
                 <!-- Car List Content Start -->
-
-
                   <div class="col-lg-8">
                       <div class="container">
-                        <form action="{% url 'order'%}" method="post">
                           <div class="row">
-                            <div class="typecar-btn bookinput-item2 cars-type">
-                              <button type="submit" data-filter="*" class="active" name="cars_type_cv">
+                            <div class="typecar-btn bookinput-item2 cars-type home2-car-filter">
+                              <a href="" type="submit" data-filter="*" tabindex="-6" class="active" name="cars_type_cv">
                                 <div calss="d-inline-flex p-2" style="padding:10px">
                                   <h2>ALL</h2>
                                 </div>
-                              </button>
+                              </a>
                             </div>
                             {% for model in models %}
-                            <div class="typecar-btn bookinput-item2 cars-type">
-                              <button type="submit" data-filter=".{{model.name}}" name="cars_type_cv">
+                            <div class="typecar-btn bookinput-item2 cars-type home2-car-filter">
+                              <a href="" type="submit" data-filter=".{{model.name}}"  name="cars_type_cv">
                                 <div calss="d-inline-flex p-2" style="padding:10px">
                                   <h6>{{model.name}}</h6>
-                                  <a class="car-hover" href="{{model.modelImg.url}}">
-                                      <img src="{{model.modelImg.url}}" alt="JSOFT">
-                                  </a>
+                                  <img src="{{model.modelImg.url}}" alt="JSOFT">
                                 </div>
-                              </button>
+                              </a>
                             </div>
                             {% endfor %}
                         </div>
-                      </form>
                     </div>
 
 
                     <div class="car-list-content m-t-50">
                         <!-- Single Car Start -->
+                        <a href="" type="submit" class="typecar-btn" data-filter=".{{model.name}}" name="cars_type_cv">sssss</a>
                         {% if cars_location %}
                         {% for car in cars_location %}
+                        <div class="popular-car-gird">
                         <div class="single-car-wrap {{car.model_id.name}}">
                             <div class="row">
                                 <!-- Single Car Thumbnail -->
@@ -211,11 +207,13 @@
                                 <!-- Single Car info -->
                             </div>
                         </div>
+                        </div>
                         <!-- Single Car End -->
                         {% endfor %}
                         {% else %}
                         <h1>{{Empty}}</h1>
                         {%endif%}
+
                         <!-- Single Car Start -->
 
 
