@@ -134,7 +134,63 @@
                 </div>
                 <!-- Sidebar Area End -->
                 <!-- Car List Content Start -->
-                <div class="col-lg-8">
+
+
+                  <div class="col-lg-8">
+                      <div class="container">
+                        <form action="{% url 'order'%}" method="post">
+                          <div class="row">
+                            <div class="typecar-btn bookinput-item2 cars-type">
+                              <button type="submit" name="cars_type_cv">
+                                <div calss="d-inline-flex p-2" style="padding:10px">
+                                  <h2>ALL</h2>
+                                </div>
+                              </button>
+                            </div>
+                            <div class="typecar-btn bookinput-item2 cars-type">
+                              <button type="submit" name="cars_type_cv">
+                                <div calss="d-inline-flex p-2" style="padding:10px">
+                                  <h6>Sedan</h6>
+                                  <img src="/media/car_pictures/sedan.png" alt="JSOFT">
+                                </div>
+                              </button>
+                            </div>
+                            <div class="typecar-btn bookinput-item2 cars-type">
+                              <button type="submit" name="cars_type_cv">
+                                <div calss="d-inline-flex p-2" style="padding:10px">
+                                  <h6>Hybrid</h6>
+                                  <img src="/media/car_pictures/hybrid.png" alt="JSOFT">
+                                </div>
+                              </button>
+                            </div>
+                            <div class="typecar-btn bookinput-item2 cars-type">
+                              <button type="submit" name="cars_type_cv">
+                                <div calss="d-inline-flex p-2" style="padding:10px">
+                                  <h6>SUV</h6>
+                                  <img src="/media/car_pictures/suv.png" alt="JSOFT">
+                                </div>
+                              </button>
+                            </div>
+                            <div class="typecar-btn bookinput-item2 cars-type">
+                              <button type="submit" name="cars_type_cv">
+                                <div calss="d-inline-flex p-2" style="padding:10px">
+                                  <h6>Hatchback</h6>
+                                  <img src="/media/car_pictures/hatchback.png" alt="JSOFT">
+                                </div>
+                              </button>
+                            </div>
+                            <div class="typecar-btn bookinput-item2 cars-type">
+                              <button type="submit" name="cars_type_cv">
+                                <div calss="d-inline-flex p-2" style="padding:10px">
+                                  <h6>Cupe</h6>
+                                  <img src="/media/car_pictures/cupe.png" alt="JSOFT">
+                                </div>
+                              </button>
+                            </div>
+                        </div>
+                      </form>
+                    </div>
+
 
                     <div class="car-list-content m-t-50">
                         <!-- Single Car Start -->
