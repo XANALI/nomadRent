@@ -129,3 +129,11 @@ LOGIN_URL = 'login'
 
 MEDIA_ROOT = BASE_DIR + r'/ourApp/media'
 MEDIA_URL = '/media/'
+
+EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'csse1806k@gmail.com'
+EMAIL_HOST_PASSWORD = '123456789csse'

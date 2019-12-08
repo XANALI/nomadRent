@@ -96,9 +96,6 @@ def profile(request):
 
     return render(request, 'ourApp/profile.html', {'user_form':form})
 
-def addBook(request, location):
-    request.session['location'] = location
-    request.session.modified = True
 
 
 def order(request):
@@ -130,7 +127,7 @@ def order(request):
             pickdate=request.POST['pickdate']
             returndate=request.POST['returndate']
             cars_location=Car.objects.filter(city_id=City.objects.get(name__icontains=location),available=True)
-            addBook(request, location)
+            
             #cars_location=Car.objects.filter(rate=5).delete()
             context={
                 'cars':cars,
