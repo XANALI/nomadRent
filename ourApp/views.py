@@ -146,6 +146,8 @@ def order(request):
         except:
             return render(request,'ourApp/order.html',{'Empty':"No cars in this location",'cars':cars,'citys':citys})
             print('the comments cannot be added')
+    else:
+        return render(request,'ourApp/order.html')
 
 def convert(pickdate):
     step=1
