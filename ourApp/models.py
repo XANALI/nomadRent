@@ -78,6 +78,7 @@ class Car(models.Model):
     end_date = models.DateTimeField('ending date',null=True, blank=True)
     available = models.BooleanField()
     rate = models.IntegerField(default=0)
+    desciption_text = models.TextField(max_length=1000,default='')
     engine_id = models.ForeignKey(Engine, on_delete=models.CASCADE,default=1)
     fuel_id = models.ForeignKey(FuelType, on_delete=models.CASCADE,default=1)
     picture_id = models.ForeignKey(Gallery, on_delete=models.CASCADE,default=1)
