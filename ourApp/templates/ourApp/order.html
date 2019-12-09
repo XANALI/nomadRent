@@ -158,56 +158,65 @@
 
 
                     <div class="car-list-content m-t-50">
-                        <!-- Single Car Start -->
                         {% if cars_location %}
-                        {% for car in cars_location %}
-                        <div class="popular-car-gird">
-                        <div class="single-car-wrap {{car.model_id.name}}">
-                            <div class="row">
-                                <!-- Single Car Thumbnail -->
-                                <div class="col-lg-5">
-                                  <div class="p-car-thumbnails">
-                                      <a class="car-hover" href="{{car.picture_id.userImg.url}}">
-                                          <img src="{{car.picture_id.userImg.url}}" alt="JSOFT">
-                                      </a>
-                                  </div>
-                                </div>
-                                <!-- Single Car Thumbnail -->
-                                <!-- Single Car Info -->
-                                <div class="col-lg-7">
-                                    <div class="display-table">
-                                        <div class="display-table-cell">
-                                            <div class="car-list-info">
 
 
-                                                <h2><a href="#">{{car.name}}</a></h2>
-                                                <h5>${{car.price_hourly}}/hour</h5>
-                                                <p>Vivamus eget nibh. Etiam cursus leo vel metus. Nulla facilisi. Aenean inorci luctus et ultrices posuere cubilia.</p>
-                                                <ul class="car-info-list">
-                                                    <li>{{car.model_year}}</li>
-                                                    <li>{{car.engine_id.name}}</li>
-                                                    <li>{{car.fuel_id.name}}</li>
-                                                </ul>
-                                                <p class="rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star unmark"></i>
-                                                </p>
-                                                <a href="{%url 'confirmation'%}" class="rent-btn">Book It</a>
+                            {% for car in cars_location %}
+                            <form class="" action="{% url 'confirmation' %}" method="post">
+                              {% csrf_token %}
 
-                                            </div>
+                              <input hidden type="text" name="car_id" value={{car.pk}}>
+                              <input hidden type="text" name="location" value={{location}}>
+                              <input hidden type="text" name="pickdate" value={{pickdate}}>
+                              <input hidden type="text" name="returndate" value={{returndate}}>
+                            <div class="popular-car-gird">
+                              <div class="single-car-wrap {{car.model_id.name}}">
+                                  <div class="row">
+                                      <!-- Single Car Thumbnail -->
+                                      <div class="col-lg-5">
+                                        <div class="p-car-thumbnails">
+                                            <a class="car-hover" href="{{car.picture_id.userImg.url}}">
+                                                <img src="{{car.picture_id.userImg.url}}" alt="JSOFT">
+                                            </a>
                                         </div>
-                                    </div>
-                                </div>
+                                      </div>
+                                      <!-- Single Car Thumbnail -->
+                                      <!-- Single Car Info -->
+                                      <div class="col-lg-7">
+                                          <div class="display-table">
+                                              <div class="display-table-cell">
+                                                  <div class="car-list-info">
+                                                      <h2><a href="#">{{car.name}}</a></h2>
+                                                      <h5>${{car.price_hourly}}/hour</h5>
+                                                      <p>Vivamus eget nibh. Etiam cursus leo vel metus. Nulla facilisi. Aenean inorci luctus et ultrices posuere cubilia.</p>
+                                                      <ul class="car-info-list">
+                                                          <li>{{car.model_year}}</li>
+                                                          <li>{{car.engine_id.name}}</li>
+                                                          <li>{{car.fuel_id.name}}</li>
+                                                      </ul>
+                                                      <p class="rating">
+                                                          <i class="fa fa-star"></i>
+                                                          <i class="fa fa-star"></i>
+                                                          <i class="fa fa-star"></i>
+                                                          <i class="fa fa-star"></i>
+                                                          <i class="fa fa-star unmark"></i>
+                                                      </p>
+                                                      <div>
+                                                        <button type="submit" name="rentcar" class="rent-btn">Book It</button>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
 
-                                <!-- Single Car info -->
+                                    <!-- Single Car info -->
+                                  </div>
                             </div>
                         </div>
-                        </div>
+                      </form>
                         <!-- Single Car End -->
                         {% endfor %}
+
                         {% else %}
                         <h1>{{Empty}}</h1>
                         {%endif%}

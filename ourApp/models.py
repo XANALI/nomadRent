@@ -76,6 +76,7 @@ class Car(models.Model):
     price_hourly = models.FloatField()
     available = models.BooleanField()
     rate = models.IntegerField(default=0)
+    desciption_text = models.TextField(max_length=1000,default='')
     engine_id = models.ForeignKey(Engine, on_delete=models.CASCADE,default=1)
     fuel_id = models.ForeignKey(FuelType, on_delete=models.CASCADE,default=1)
     picture_id = models.ForeignKey(Gallery, on_delete=models.CASCADE,default=1)

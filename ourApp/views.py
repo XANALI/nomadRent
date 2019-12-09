@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib import messages
 from .models import *
@@ -18,18 +18,20 @@ def index(request):
     return render(request,'ourApp/index2.html',{'cars':cars,'models':models, 'citys':citys})
 
 def about(request):
-    return render(request,'ourApp/about.html')
+    contacts = Contact.objects.all()[:5]
+    return render(request,'ourApp/about.html', {'contacts':contacts})
 
 
 def get_by_id(request, car_id):
     return HttpResponse(Car.objects.get(id=car_id))
 
 def services(request):
-    return render(request,'ourApp/services.html')
+    contacts = Contact.objects.all()[:5]
+    return render(request,'ourApp/services.html', {'contacts':contacts})
 
 def cars(request):
     cars=Car.objects.all()
-    paginator=Paginator(cars,2)
+    paginator=Paginator(cars,4)
     page_number=request.GET.get('page',1)
     page=paginator.get_page(page_number)
 
@@ -76,13 +78,22 @@ def contact(request):
 def login(request):
     return render(request,'ourApp/login.html')
 
+def send_confirm_for_register(email, name, surname, subject):
+    message = 'Dear, ' + name + ' ' + surname + '. We are pleased to inform you that you successfully created a new account .' + 'Sincerely yours. NomadRent'
+    recepient = email
+    send_mail(subject, message, EMAIL_HOST_USER, [recepient], fail_silently = False)
+
+
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}!')
+            email = form.cleaned_data.get('email')
+            name = form.cleaned_data.get('name')
+            surname = form.cleaned_data.get('surname')
+            subject = 'Registration'
+            send_confirm_for_register(email, name, surname, subject)
             return redirect('index')
     else:
         form = UserRegisterForm()
@@ -177,43 +188,62 @@ def convert(pickdate):
 
 
 def confirmation(request):
+    location=''
+    car_id=''
+    pickdate=''
+    returndate=''
     if request.method == 'POST':
-        if request.user.is_authenticated:
-            if request.user.bank_card_id.pk != 1 and request.user.license_id.pk != 1:
-                bank_card_form = BankCardForm(request.POST, instance=request.user.bank_card_id)
-                driver_license_form = DriverLicenseForm(request.POST, request.FILES, instance=request.user.license_id)
+        if location=='' and car_id=='':
+            location=request.POST['location']
+            car_id = request.POST['car_id']
+            pickdate=request.POST['pickdate']
+            returndate = request.POST['returndate']
+            print(location)
+            print(car_id)
+            print(pickdate)
+            print(returndate)
+        else:
+            if request.user.is_authenticated:
+                if request.user.bank_card_id.pk == 1 and request.user.license_id.pk == 1:
+                    bank_card_form = BankCardForm(request.POST)
+                    driver_license_form = DriverLicenseForm(request.POST, request.FILES)
+                else:
+                    bank_card_form = BankCardForm(request.POST, instance=request.user.bank_card_id)
+                    driver_license_form = DriverLicenseForm(request.POST, request.FILES, instance=request.user.license_id)
             else:
                 bank_card_form = BankCardForm(request.POST)
                 driver_license_form = DriverLicenseForm(request.POST, request.FILES)
-        else:
-            bank_card_form = BankCardForm(request.POST)
-            driver_license_form = DriverLicenseForm(request.POST, request.FILES)
 
-        if bank_card_form.is_valid() and driver_license_form.is_valid():
-            if request.user.bank_card_id.pk == 1 and request.user.license_id.pk == 1:
-                print('a')
-                request.user.bank_card_id = bank_card_form.save()
-                request.user.license_id = driver_license_form.save()
-                request.user.save()
-            else:
-                bank_card_form.save()
-                driver_license_form.save()
-            return redirect('index')
+            if bank_card_form.is_valid() and driver_license_form.is_valid():
+                if request.user.bank_card_id.pk == 1 and request.user.license_id.pk == 1:
+                    print('a')
+                    request.user.bank_card_id = bank_card_form.save()
+                    request.user.license_id = driver_license_form.save()
+                    request.user.save()
+                else:
+                    bank_card_form.save()
+                    driver_license_form.save()
+                return redirect('index')
 
-    else:
-        if request.user.is_authenticated :
-            if request.user.bank_card_id.pk == 1 and request.user.license_id.pk == 1:
-                bank_card_form = BankCardForm()
-                driver_license_form = DriverLicenseForm()
-            else:
-                bank_card_form = BankCardForm(instance=request.user.bank_card_id)
-                driver_license_form = DriverLicenseForm(instance=request.user.license_id)
-        else:
+
+    if request.user.is_authenticated :
+        if request.user.bank_card_id.pk == 1 and request.user.license_id.pk == 1:
             bank_card_form = BankCardForm()
             driver_license_form = DriverLicenseForm()
+        else:
+            bank_card_form = BankCardForm(instance=request.user.bank_card_id)
+            driver_license_form = DriverLicenseForm(instance=request.user.license_id)
+    else:
+        bank_card_form = BankCardForm()
+        driver_license_form = DriverLicenseForm()
 
     context = {
         'bank_card_form':bank_card_form,
         'driver_license_form':driver_license_form
     }
     return render(request,'ourApp/confirmation.html', context)
+
+
+def car_info(request, car_id):
+    car = get_object_or_404(Car, pk=car_id)
+    return render(request, 'ourApp/car_info.html', {'car':car})
