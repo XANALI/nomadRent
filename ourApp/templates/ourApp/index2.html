@@ -26,11 +26,11 @@
                                         </div>
 
                                         <div class="pick-date bookinput-item">
-                                            <input id="startDate2" name="pickdate" placeholder="Pick Date" />
+                                            <input id="startDate2" name="pickdate" placeholder="Pick Date" required/>
                                         </div>
 
                                         <div class="retern-date bookinput-item">
-                                            <input id="endDate2" name="returndate" placeholder="Return Date" />
+                                            <input id="endDate2" name="returndate" placeholder="Return Date" required/>
                                         </div>
 
                                         <div class="bookcar-btn bookinput-item">
@@ -358,7 +358,7 @@
                     <div class="choose-ur-cars">
                         <div class="row">
                             <div class="col-lg-3">
-                                <!-- Choose Filtering Menu Start --> 
+                                <!-- Choose Filtering Menu Start -->
                                 <div class="home2-car-filter">
                                     <a href="#" data-filter="*" class="active">all</a>
                                     {% for model in models%}

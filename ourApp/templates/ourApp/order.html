@@ -29,11 +29,10 @@
                 <div class="col-lg-4">
                     <div class="sidebar-content-wrap">
                         <!-- Single Sidebar Start -->
+                        <form action=""  method="post">
                         <div class="single-sidebar">
                             <h3>For More Informations</h3>
-
                             <div class="book-a-car" style="margin-top:0px">
-                              <form action=""  method="post">
                                   {% csrf_token %}
                                     <!--== Pick Up Location ==-->
                                     <div class="pickup-location book-item">
@@ -63,51 +62,50 @@
                                        <button type="submit" name="bookcar">Search</button>
                                    </div>
                                    <!--== Car Choose ==-->
-                                   </form>
                         </div>
                         </div>
                         <!-- Single Sidebar End -->
 
                         <!-- Single Sidebar Start -->
                         <div class="single-sidebar">
-                            <h3>Rental Tips</h3>
+                            <h3>Filter of car</h3>
 
                             <div class="sidebar-body">
                                 <ul class="recent-tips">
-                                    <h6 class="text-center">Kansha benzin kurtady</h6>
+                                    <h6 class="text-center">Filter by Fuel Type</h6>
                                     <li class="single-recent-tips">
                                         <div class="recent-tip-thum">
-                                          <input type="checkbox" id="shest001">
+                                          <input type="checkbox" name="petrol">
                                         </div>
                                         <div class="recent-tip-body">
-                                            <p style="font-size:15px">10 litrdan az</p>
+                                            <p style="font-size:15px">Petrol</p>
                                         </div>
                                     </li>
 
                                     <li class="single-recent-tips">
                                         <div class="recent-tip-thum">
-                                            <input type="checkbox" id="shest001">
+                                            <input type="checkbox" name="diesel">
                                         </div>
                                         <div class="recent-tip-body">
-                                          <p style="font-size:15px">10 litrdan kop</p>
+                                          <p style="font-size:15px">Diesel</p>
                                         </div>
                                     </li>
 
                                     <li class="single-recent-tips">
                                       <div class="recent-tip-thum">
-                                          <input type="checkbox" id="shest001">
+                                          <input type="checkbox" name="electric">
                                       </div>
                                       <div class="recent-tip-body">
-                                          <p></p>
+                                          <p style="font-size:15px">Electric</p>
                                       </div>
                                     </li>
 
                                     <li class="single-recent-tips">
                                       <div class="recent-tip-thum">
-                                          <input type="checkbox" id="shest001">
+                                          <input type="checkbox" name="hybrid">
                                       </div>
                                       <div class="recent-tip-body">
-                                          <p></p>
+                                          <p style="font-size:15px">Hybrid</p>
                                       </div>
                                     </li>
                                 </ul>
@@ -130,6 +128,7 @@
                             </div>
                         </div>
                         <!-- Single Sidebar End -->
+                        </form>
                     </div>
                 </div>
                 <!-- Sidebar Area End -->
@@ -160,7 +159,6 @@
 
                     <div class="car-list-content m-t-50">
                         <!-- Single Car Start -->
-                        <a href="" type="submit" class="typecar-btn" data-filter=".{{model.name}}" name="cars_type_cv">sssss</a>
                         {% if cars_location %}
                         {% for car in cars_location %}
                         <div class="popular-car-gird">

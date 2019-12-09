@@ -98,14 +98,12 @@
                     <div class="col-lg-8 d-none d-xl-block">
                         <nav class="mainmenu alignright">
                             <ul>
-
-                                <li class="active"><a href="{% url 'index'%}">Home</a>
-
+                                <li class="{% if request.path == '/' %}active{% endif %}"><a href="{% url 'index'%}">Home</a>
                                 </li>
-                                <li><a href="{% url 'about'%}">About</a></li>
-                                <li><a href="{% url 'services'%}">services</a></li>
-                                <li><a href="{% url 'cars-without-sidebar'%}">Cars</a></li>
-                                <li><a href="{% url 'contact' %}">Contact</a></li>
+                                <li class="{% if request.path == '/about/' %}active{% endif %}"><a href="{% url 'about'%}">About</a></li>
+                                <li class="{% if request.path == '/services/' %}active{% endif %}"><a href="{% url 'services'%}">services</a></li>
+                                <li class="{% if request.path == '/cars/' %}active{% endif %}"><a href="{% url 'cars-without-sidebar'%}">Cars</a></li>
+                                <li class="{% if request.path == '/contact/' %}active{% endif %}"><a href="{% url 'contact' %}">Contact</a></li>
                             </ul>
                         </nav>
                     </div>

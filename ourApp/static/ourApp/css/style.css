@@ -2255,7 +2255,8 @@ body,
 }
 
 .single-car-wrap:last-child {
-	margin-bottom: 50px;
+	margin-bottom: 35px;
+	margin-top: 15px;
 }
 
 .car-thumb-1 {

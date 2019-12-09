@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from carRental.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
 from django.core.paginator import Paginator
+from django.db.models import Q
 # Create your views here.
 
 def index(request):
@@ -129,7 +130,13 @@ def order(request):
             location=request.POST['location']
             pickdate=request.POST['pickdate']
             returndate=request.POST['returndate']
-            cars_location=Car.objects.filter(city_id=City.objects.get(name__icontains=location),available=True)
+            if request.POST['pickdate']:
+                cars_location=Car.objects.filter(Q(city_id=City.objects.get(name__icontains=location),start_date__gte=convert(returndate))|Q(city_id=City.objects.get(name__icontains=location),end_date__lte=convert(pickdate)))
+
+                print(convert(returndate))
+            elif request.POST['pickdate']:
+                cars_location=Car.objects.filter(city_id=City.objects.get(name__icontains=location),end_date__lte=convert(pickdate))
+
             #cars_location=Car.objects.filter(rate=5).delete()
             context={
                 'cars':cars,

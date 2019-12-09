@@ -74,8 +74,6 @@ class Car(models.Model):
     model_id = models.ForeignKey(ModelOfCar, on_delete=models.CASCADE, default=1)
     model_year = models.IntegerField()
     price_hourly = models.FloatField()
-    start_date = models.DateTimeField('starting date',null=True, blank=True)
-    end_date = models.DateTimeField('ending date',null=True, blank=True)
     available = models.BooleanField()
     rate = models.IntegerField(default=0)
     engine_id = models.ForeignKey(Engine, on_delete=models.CASCADE,default=1)
@@ -83,6 +81,9 @@ class Car(models.Model):
     picture_id = models.ForeignKey(Gallery, on_delete=models.CASCADE,default=1)
     add_equip_id = models.ForeignKey(AdditionalEquipment, on_delete=models.CASCADE,default=1)
     city_id = models.ForeignKey(City, on_delete=models.CASCADE, default=0)
+    start_date = models.DateField('starting date',null=True, blank=True)
+    end_date = models.DateField('ending date',null=True, blank=True)
+
     def __str__(self):
         return self.name
 
