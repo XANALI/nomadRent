@@ -43,7 +43,7 @@
                         <div class="service-item-thumb ser-thumb-bg-2 d-lg-none d-md-block"></div>
                         <div class="service-item-content">
                             <h3>LIFE INSURANCE</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicingedsedsis elited. Necessitatibus aliquid, architecto ullam esdefugiat quasi! Doloribus eaque quam soluta quae porro reprehenderit edsconsequuntur hic ducimus consequatur, dicta officia excepturi quos, quis voluptatum optio deserunt sit. Totam ab dolorum at, labore quisquamn earum, magni reiciendis officiis dolores nemo nostrum perspiciatis!</p>
+                            <p>Life insurance is a contract between an insurer and a policyholder in which the insurer guarantees payment of a death benefit to named beneficiaries upon the death of the insured. The insurance company promises a death benefit in consideration of the payment of premium by the insured. This is often calculated with a free asset ratio.</p>
                         </div>
                         <div class="service-item-thumb ser-thumb-bg-2 d-none d-lg-block d-md-none"></div>
                     </div>
@@ -54,7 +54,7 @@
                         <div class="service-item-thumb ser-thumb-bg-3"></div>
                         <div class="service-item-content">
                             <h3>TAXI SERVICE</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicingedsedsis elited. Necessitatibus aliquid, architecto ullam esdefugiat quasi! Doloribus eaque quam soluta quae porro reprehenderit edsconsequuntur hic ducimus consequatur, dicta officia excepturi quos, quis voluptatum optio deserunt sit. Totam ab dolorum at, labore quisquamn earum, magni reiciendis officiis dolores nemo nostrum perspiciatis!</p>
+                            <p>There are many official and semi-official taxi services all over Almaty. You can find taxis parked outside popular venues like the Airport and shopping malls. At the airport, be ready to have many people offering you a ride as you leave the building. We highly recommend to make a deal for a ride directly with the taxi driver, preferably if he speaks and understands at least basic English. Ideally, book a transfer with your hotel to ensure appropriate prices. Typically, the price of a ride will cost up to 2,000 KZT to/  from the city center from/ to the airport. UBERs are available by using the app.</p>
                         </div>
                     </div>
                     <!-- Single Services End -->
@@ -64,7 +64,10 @@
                         <div class="service-item-thumb ser-thumb-bg-4 d-lg-none d-md-block"></div>
                         <div class="service-item-content">
                             <h3>CALL DRIVER</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicingedsedsis elited. Necessitatibus aliquid, architecto ullam esdefugiat quasi! Doloribus eaque quam soluta quae porro reprehenderit edsconsequuntur hic ducimus consequatur, dicta officia excepturi quos, quis voluptatum optio deserunt sit. Totam ab dolorum at, labore quisquamn earum, magni reiciendis officiis dolores nemo nostrum perspiciatis!</p>
+                            <p>We have well experienced and Qualified drivers of minimum 3+ yrs Experience. We provide professional drivers to customer's door step when they need. Our business is from repeated customers and referrals.
+We maintain Good Relationship with customers and drivers.
+Some of our customers are VIPs,politician and businessmen.
+All of our drivers have been professionally trained to a very high standard.</p>
                         </div>
                         <div class="service-item-thumb ser-thumb-bg-2 d-none d-lg-block d-md-none"></div>
                     </div>
@@ -156,7 +159,7 @@
         </div>
     </div>
     <!--== Partner Area End ==-->
-
+    {% if contacts %}
     <!--== Testimonials Area Start ==-->
     <section id="testimonial-area" class="section-padding">
         <div class="container">
@@ -166,7 +169,7 @@
                     <div class="section-title  text-center">
                         <h2>Testimonials</h2>
                         <span class="title-line"><i class="fa fa-car"></i></span>
-                        <p>Lorem ipsum dolor sit amet elit.</p>
+                        <p></p>
                     </div>
                 </div>
                 <!-- Section Title End -->
@@ -175,40 +178,19 @@
             <div class="row">
                 <div class="col-lg-8 col-md-12 m-auto">
                     <div class="testimonial-content">
+                      {% for contact in contacts %}
                         <!--== Single Testimoial Start ==-->
                         <div class="single-testimonial">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis totam obcaecati impedit, at autem repellat vel magni architecto veritatis sed.</p>
-                            <h3>Vongchong Smith</h3>
-                            <div class="client-logo">
-                              <img src="{% static 'ourApp/img/client/client-pic-2.jpg'%}" alt="JSOFT">
-                        </div>
+                            <p>{{contact.message}}</p>
+                            <h3>{{contact.full_name}}</h3>
                         </div>
                         <!--== Single Testimoial End ==-->
-
-                        <!--== Single Testimoial Start ==-->
-                        <div class="single-testimonial">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis totam obcaecati impedit, at autem repellat vel magni architecto veritatis sed.</p>
-                            <h3>Amader Tuni</h3>
-                            <div class="client-logo">
-                              <img src="{% static 'ourApp/img/client/client-pic-1.jpg'%}" alt="JSOFT">
-                            </div>
-                        </div>
-                        <!--== Single Testimoial End ==-->
-
-                        <!--== Single Testimoial Start ==-->
-                        <div class="single-testimonial">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis totam obcaecati impedit, at autem repellat vel magni architecto veritatis sed.</p>
-                            <h3>Atex Tuntuni Smith</h3>
-                            <div class="client-logo">
-                              <img src="{% static 'ourApp/img/client/client-pic-3.jpg'%}" alt="JSOFT">
-                          </div>
-                        </div>
-                        <!--== Single Testimoial End ==-->
+                      {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!--== Testimonials Area End ==-->
+    {% endif %}
 
 {% endblock %}

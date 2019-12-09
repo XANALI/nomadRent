@@ -17,18 +17,20 @@ def index(request):
     return render(request,'ourApp/index2.html',{'cars':cars,'models':models, 'citys':citys})
 
 def about(request):
-    return render(request,'ourApp/about.html')
+    contacts = Contact.objects.all()[:5]
+    return render(request,'ourApp/about.html', {'contacts':contacts})
 
 
 def get_by_id(request, car_id):
     return HttpResponse(Car.objects.get(id=car_id))
 
 def services(request):
-    return render(request,'ourApp/services.html')
+    contacts = Contact.objects.all()[:5]
+    return render(request,'ourApp/services.html', {'contacts':contacts})
 
 def cars(request):
     cars=Car.objects.all()
-    paginator=Paginator(cars,2)
+    paginator=Paginator(cars,4)
     page_number=request.GET.get('page',1)
     page=paginator.get_page(page_number)
 
