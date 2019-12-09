@@ -76,6 +76,10 @@
 ==========================================*/
 
 /*== Theme Defualt CSS ==*/
+.show-car-info{
+	display: inline;
+	padding: 30px;
+}
 
 .overlay {
 	position: relative;

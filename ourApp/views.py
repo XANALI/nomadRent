@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib import messages
 from .models import *
@@ -237,3 +237,8 @@ def confirmation(request):
         'driver_license_form':driver_license_form
     }
     return render(request,'ourApp/confirmation.html', context)
+
+
+def car_info(request, car_id):
+    car = get_object_or_404(Car, pk=car_id)
+    return render(request, 'ourApp/car_info.html', {'car':car})

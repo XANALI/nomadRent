@@ -39,7 +39,7 @@
                                       </a>
                                   </div>
                                     <div class="car-list-info without-bar">
-                                        <h2><a href="#">{{car.name}}</a></h2>
+                                        <h2><a href="{%url 'car_info' car.id%}">{{car.name}}</a></h2>
                                         <h5>{{car.price_hourly}}$ Rent /per a day</h5>
                                         <p>{{car.desciption_text}}</p>
                                         <ul class="car-info-list">
@@ -54,7 +54,6 @@
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star unmark"></i>
                                         </p>
-                                        <a href="#" class="rent-btn">Book It</a>
                                     </div>
                                 </div>
                             </div>
