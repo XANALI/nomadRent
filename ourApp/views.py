@@ -142,7 +142,7 @@ def order(request):
             pickdate=request.POST['pickdate']
             returndate=request.POST['returndate']
             if request.POST['pickdate']:
-                cars_location=Car.objects.filter(Q(city_id=City.objects.get(name__icontains=location),start_date__gte=convert(returndate))|Q(city_id=City.objects.get(name__icontains=location),end_date__lte=convert(pickdate)))
+                cars_location=Car.objects.filter(Q(city_id=City.objects.get(name__icontains=location),start_date__gte=convert(returndate))|Q(city_id=City.objects.get(name__icontains=location),end_date__lte=convert(pickdate))|Q(city_id=City.objects.get(name__icontains=location),available=True))
 
                 print(convert(returndate))
             elif request.POST['pickdate']:
