@@ -100,19 +100,15 @@
                             </div>
                         </div>
 
-
-
+                <div class="rent-btn">
+                  <a href="{%url 'user_update'%}">Update Profile</a>
+                </div>
+                <div class="rent-btn">
+                  <a href="{%url 'user_orders'%}">Show Orders</a>
+                </div>
 
                 </div>
             </div>
-            <form method="POST" enctype="multipart/form-data">
-              <h2>Update Data</h2>
-              {% csrf_token %}
-              {{ user_form|crispy }}
-              <div class="log-btn">
-                <button type="submit"><i class="fa fa-check-square"></i> Update</button>
-              </div>
-            </form>
         </div>
     </div>
 

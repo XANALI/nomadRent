@@ -1,5 +1,5 @@
 from django import forms
-from .models import SimpleUser, BankCard, DriverLicense, Contact
+from .models import SimpleUser, BankCard, DriverLicense, Contact, Order
 from django.contrib.auth.forms import UserCreationForm
 from PIL import Image
 import datetime

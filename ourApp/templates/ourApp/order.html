@@ -174,8 +174,8 @@
 
                               <input hidden type="text" name="car_id" value={{car.pk}}>
                               <input hidden type="text" name="location" value={{location}}>
-                              <input hidden type="text" name="pickdate" value={{pickdate}}>
-                              <input hidden type="text" name="returndate" value={{returndate}}>
+                              <input hidden type="text" name="pickdate" value={{pickdate}} required>
+                              <input hidden type="text" name="returndate" value={{returndate}} required>
                             <div class="popular-car-gird">
                               <div class="single-car-wrap {{car.model_id.name}}">
                                   <div class="row">

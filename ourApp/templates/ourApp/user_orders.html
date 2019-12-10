@@ -1,0 +1,119 @@
+{%extends "ourApp/layout.html" %}
+
+{%block content%}
+{% load staticfiles %}
+
+    <!--== Page Title Area Start ==-->
+    <section id="page-title-area" class="section-padding overlay">
+        <div class="container">
+            <div class="row">
+                <!-- Page Title Start -->
+                <div class="col-lg-12">
+                    <div class="section-title  text-center">
+                        <h2>Your orders</h2>
+                        <span class="title-line"><i class="fa fa-car"></i></span>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    </div>
+                </div>
+                <!-- Page Title End -->
+            </div>
+        </div>
+    </section>
+    <!--== Page Title Area End ==-->
+
+    {%if user_orders_actual or user_orders_history%}
+        <div class="row">
+              <div class="container">
+                  <div class="row">
+                    <div class="typecar-btn bookinput-item2  home2-car-filter">
+                      <a href="" type="submit" data-filter="*" tabindex="-6" class="active" name="cars_type_cv">
+                        <div calss="d-inline-flex p-2" style="padding:10px">
+                          <h6>ALL</h6>
+                        </div>
+                      </a>
+                    </div>
+                    {%if user_orders_actual%}
+                      <div class="typecar-btn bookinput-item2 home2-car-filter">
+                        <a href="" type="submit" data-filter=".actual"  name="cars_type_cv">
+                          <div calss="d-inline-flex p-2" style="padding:10px">
+                            <h6>Actual</h6>
+                          </div>
+                        </a>
+                      </div>
+                    {%endif%}
+                    {%if user_orders_history%}
+                      <div class="typecar-btn bookinput-item2 home2-car-filter">
+                        <a href="" type="submit" data-filter=".history"  name="cars_type_cv">
+                          <div calss="d-inline-flex p-2" style="padding:10px">
+                            <h6>History</h6>
+                          </div>
+                        </a>
+                      </div>
+                    {%endif%}
+                </div>
+            </div>
+          <div class="col-lg-9">
+              <!-- Choose Cars Content-wrap -->
+
+              <div class="row popular-car-gird">
+                {% for user_order in user_orders_actual%}
+                  <!-- Single Popular Car Start -->
+                  <div class="col-lg-6 col-md-6 actual">
+                      <div class="single-popular-car">
+                          <div class="p-car-content">
+                              <h3>
+                                  <a href="">Order #{{user_order.pk}}</a>
+                                  <span class="price"><i class="fa fa-tag"></i>Total price: ${{user_order.total_price}}</span>
+                              </h3>
+                              <div class="col-lg-6 col-md-6 ">
+                                <a class="car-hover" href="{{user_order.car_id.picture_id.userImg.url}}">
+                                    <img src="{{user_order.car_id.picture_id.userImg.url}}" alt="JSOFT">
+                                </a>
+                              </div>
+                              <h5>{{user_order.car_id.name}}</h5>
+                              <div class="p-car-feature">
+                                  <a href="#">{{user_order.car_id.fuel_id.name}}</a>
+                                  <a href="#">{{user_order.car_id.engine_id.name}}</a>
+                                  <a href="#">{{user_order.car_id.city_id.name}}</a>
+                              </div>
+                              <h5>Start Date: {{user_order.car_id.start_date}}</h5>
+                              <h5>End Date: {{user_order.car_id.end_date}}</h5>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- Single Popular Car End -->
+                {% endfor %}
+                {% for user_order in user_orders_history%}
+                  <!-- Single Popular Car Start -->
+                  <div class="col-lg-6 col-md-6 history">
+                      <div class="single-popular-car">
+                          <div class="p-car-content">
+                              <h3>
+                                  <a href="">Order #{{user_order.pk}}</a>
+                                  <span class="price"><i class="fa fa-tag"></i>Total price: ${{user_order.total_price}}</span>
+                              </h3>
+                              <div class="col-lg-6 col-md-6 ">
+                                <a class="car-hover" href="{{user_order.car_id.picture_id.userImg.url}}">
+                                    <img src="{{user_order.car_id.picture_id.userImg.url}}" alt="JSOFT">
+                                </a>
+                              </div>
+                              <h5>{{user_order.car_id.name}}</h5>
+                              <div class="p-car-feature">
+                                  <a href="#">{{user_order.car_id.fuel_id.name}}</a>
+                                  <a href="#">{{user_order.car_id.engine_id.name}}</a>
+                                  <a href="#">{{user_order.car_id.city_id.name}}</a>
+                              </div>
+                              <h5>Start Date: {{user_order.car_id.start_date}}</h5>
+                              <h5>End Date: {{user_order.car_id.end_date}}</h5>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- Single Popular Car End -->
+                {% endfor %}
+              </div>
+              <!-- Choose Cars Content-wrap -->
+          </div>
+        </div>
+    {%endif%}
+
+    {% endblock %}
