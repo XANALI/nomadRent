@@ -48,11 +48,11 @@
                                    </div>
                                    <div class="pick-up-date book-item">
                                        <h4>PICK-UP DATE:</h4>
-                                       <input id="startDate" placeholder="Pick Up Date" name="pickdate" value="{{pickdate}}"></input>
+                                       <input id="startDate" placeholder="Pick Up Date" name="pickdate" value="{{pickdate}}" required></input>
 
                                        <div class="return-car">
                                            <h4>Return DATE:</h4>
-                                           <input id="endDate" placeholder="Return Date" name="returndate" value="{{returndate}}"></input>
+                                           <input id="endDate" placeholder="Return Date" name="returndate" value="{{returndate}}" required></input>
                                        </div>
                                    </div>
                                    <!--== Pick Up Location ==-->
@@ -167,8 +167,8 @@
 
                               <input hidden type="text" name="car_id" value={{car.pk}}>
                               <input hidden type="text" name="location" value={{location}}>
-                              <input hidden type="text" name="pickdate" value={{pickdate}}>
-                              <input hidden type="text" name="returndate" value={{returndate}}>
+                              <input hidden type="text" name="pickdate" value={{pickdate}} required>
+                              <input hidden type="text" name="returndate" value={{returndate}} required>
                             <div class="popular-car-gird">
                               <div class="single-car-wrap {{car.model_id.name}}">
                                   <div class="row">

@@ -8,6 +8,7 @@ from carRental.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
 from django.core.paginator import Paginator
 from django.db.models import Q
+from datetime import datetime, date, time
 # Create your views here.
 
 def index(request):
@@ -100,7 +101,7 @@ def register(request):
     return render(request,'ourApp/register.html', {'form': form})
 
 @login_required
-def profile(request):
+def user_update(request):
     if request.method == 'POST':
         form = UserUpdateForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
@@ -111,7 +112,11 @@ def profile(request):
     else:
         form = UserUpdateForm(instance=request.user)
 
-    return render(request, 'ourApp/profile.html', {'user_form':form})
+    return render(request, 'ourApp/user_update.html', {'user_form':form})
+
+@login_required
+def profile(request):
+    return render(request, 'ourApp/profile.html')
 
 def order(request):
     cars=Car.objects.all()
@@ -186,23 +191,52 @@ def convert(pickdate):
             step+=1
     return "%s-%s-%s"%(y,m,d)
 
+def parse(date):
+    list_of_date = date.split('/')
+    return list_of_date
+
+def validateEmail( email ):
+    from django.core.validators import validate_email
+    from django.core.exceptions import ValidationError
+    try:
+        validate_email( email )
+        return True
+    except ValidationError:
+        return False
+
+def send_confirm_for_order(email, full_name, subject):
+    message = 'Dear, ' + full_name + '. We are pleased to inform you that your order successfully confirmed. To see your order you can register by followed email (' + email + ') and go to profile page to show it. Sincerely yours. NomadRent'
+    recepient = email
+    send_mail(subject, message, EMAIL_HOST_USER, [recepient], fail_silently = False)
 
 def confirmation(request):
     location=''
     car_id=''
     pickdate=''
     returndate=''
+    email_address=''
     if request.method == 'POST':
-        if location=='' and car_id=='':
-            location=request.POST['location']
-            car_id = request.POST['car_id']
-            pickdate=request.POST['pickdate']
-            returndate = request.POST['returndate']
-            print(location)
-            print(car_id)
-            print(pickdate)
-            print(returndate)
-        else:
+        location=request.POST.get('location')
+        car_id = request.POST.get('car_id')
+        pickdate=request.POST.get('pickdate')
+        returndate = request.POST.get('returndate')
+        print(location)
+        print(car_id)
+        print(pickdate)
+        print(returndate)
+        if validateEmail(request.POST.get('email')):
+            email_address = request.POST.get('email')
+            c = get_object_or_404(Car, pk=car_id)
+            pick_list = parse(pickdate)
+            return_list = parse(returndate)
+            print(pick_list)
+            pick_date_finally = date(int(pick_list[2]), int(pick_list[0]), int(pick_list[1]))
+            return_date_finally = date(int(return_list[2]), int(return_list[0]), int(return_list[1]))
+            difference_date = return_date_finally - pick_date_finally
+            total_price = difference_date.days*c.price_hourly
+            c.start_date = pick_date_finally
+            c.end_date = return_date_finally
+            c.save()
             if request.user.is_authenticated:
                 if request.user.bank_card_id.pk == 1 and request.user.license_id.pk == 1:
                     bank_card_form = BankCardForm(request.POST)
@@ -215,14 +249,31 @@ def confirmation(request):
                 driver_license_form = DriverLicenseForm(request.POST, request.FILES)
 
             if bank_card_form.is_valid() and driver_license_form.is_valid():
-                if request.user.bank_card_id.pk == 1 and request.user.license_id.pk == 1:
-                    print('a')
-                    request.user.bank_card_id = bank_card_form.save()
-                    request.user.license_id = driver_license_form.save()
-                    request.user.save()
+                order = Order()
+                order.car_id = c
+                order.total_price = total_price
+                order.email_address = email_address
+                order.total_price = total_price
+                order.start_date = pick_date_finally
+                order.end_date = return_date_finally
+                if request.user.is_authenticated:
+                    order.user_id = SimpleUser.objects.get(pk=request.user.pk)
+                    if request.user.bank_card_id.pk == 1 and request.user.license_id.pk == 1:
+                        print('request.user.pk')
+                        order.bank_card_id = request.user.bank_card_id = bank_card_form.save()
+                        order.license_id = request.user.license_id = driver_license_form.save()
+                        request.user.save()
+                    else:
+                        order.bank_card_id = bank_card_form.save()
+                        order.license_id = driver_license_form.save()
                 else:
-                    bank_card_form.save()
-                    driver_license_form.save()
+                    order.bank_card_id = bank_card_form.save()
+                    order.license_id = driver_license_form.save()
+                    try:
+                        user = SimpleUser.objects.get(email=email_address)
+                    except:
+                        send_confirm_for_order(email_address, order.bank_card_id.full_name, 'Order has confirmed')
+                order.save()
                 return redirect('index')
 
 
@@ -239,7 +290,11 @@ def confirmation(request):
 
     context = {
         'bank_card_form':bank_card_form,
-        'driver_license_form':driver_license_form
+        'driver_license_form':driver_license_form,
+        'location':location,
+        'car_id':car_id,
+        'pickdate':pickdate,
+        'returndate':returndate
     }
     return render(request,'ourApp/confirmation.html', context)
 
@@ -247,3 +302,9 @@ def confirmation(request):
 def car_info(request, car_id):
     car = get_object_or_404(Car, pk=car_id)
     return render(request, 'ourApp/car_info.html', {'car':car})
+
+def user_orders(request):
+    print(request.user.email)
+    user_orders_actual = Order.objects.all().filter(email_address=request.user.email, finished=False, canceled=False)
+    user_orders_history = Order.objects.all().filter(Q(email_address=request.user.email)&(Q(finished=True)|Q(canceled=True)))
+    return render(request, 'ourApp/user_orders.html', {'user_orders_actual':user_orders_actual, 'user_orders_history':user_orders_history})

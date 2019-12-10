@@ -23,10 +23,15 @@
   <div class="container">
     <div class="row justify-content-center">
         <form method="POST" enctype="multipart/form-data">
+          <input hidden type="text" name="car_id" value={{car_id}}>
+          <input hidden type="text" name="location" value={{location}}>
+          <input hidden type="text" name="pickdate" value={{pickdate}}>
+          <input hidden type="text" name="returndate" value={{returndate}}>
           <h2 class = "text-center">Fill Data</h2>
           {% csrf_token %}
           {{ bank_card_form|crispy }}
           {{ driver_license_form }}
+          <input type="text" name="email" value="" required>
           <div class="log-btn">
             <button type="submit"><i class="fa fa-check-square"></i> Confirm</button>
           </div>

@@ -13,4 +13,6 @@ urlpatterns = [
     path('profile/',views.profile,name="profile"),
     path('order/',views.order,name="order"),
     path('confirmation/',views.confirmation,name="confirmation"),
+    path('user_update/',views.user_update,name="user_update"),
+    path('user_orders/',views.user_orders,name="user_orders"),
 ]

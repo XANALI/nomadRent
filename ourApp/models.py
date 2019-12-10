@@ -114,13 +114,15 @@ class SimpleUser(AbstractUser):
 
 
 class Order(models.Model):
-    car_id = models.ForeignKey(Car, on_delete=models.CASCADE, default=0)
-    user_id = models.ForeignKey(SimpleUser, on_delete=models.CASCADE, default=0)
-    approves = models.BooleanField()
-    finished = models.BooleanField()
-    canceled = models.BooleanField()
+    car_id = models.ForeignKey(Car, on_delete=models.PROTECT, null=True)
+    user_id = models.ForeignKey(SimpleUser, on_delete=models.PROTECT, null=True)
+    approves = models.BooleanField(null=True, blank=True, default=True)
+    finished = models.BooleanField(null=True, blank=True, default=False)
+    canceled = models.BooleanField(null=True, blank=True, default=False)
     total_price = models.IntegerField(default=0)
     rate = models.IntegerField(default=0)
     bank_card_id = models.ForeignKey(BankCard, on_delete=models.PROTECT, default=1)
     license_id = models.ForeignKey(DriverLicense, on_delete=models.PROTECT, default=1)
-    email_address = models.EmailField(max_length=20, null=True)
+    email_address = models.EmailField(max_length=30, null=True)
+    start_date = models.DateField('starting date',null=True, blank=True)
+    end_date = models.DateField('ending date',null=True, blank=True)
