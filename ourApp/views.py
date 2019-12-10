@@ -120,9 +120,13 @@ def order(request):
     page_number=request.GET.get('page',1)
     page=paginator.get_page(page_number)
     citys=City.objects.all()
+    fuel_type=FuelType.objects.all()
     location=''
     pickdate=''
     returndate=''
+    petrol=''
+    diesel=''
+    hybrid=''
 
     is_paginated=page.has_other_pages()
 
@@ -141,14 +145,39 @@ def order(request):
             location=request.POST['location']
             pickdate=request.POST['pickdate']
             returndate=request.POST['returndate']
-            if request.POST['pickdate']:
+            from_url=request.POST['from']
+            if from_url=="from_index":
                 cars_location=Car.objects.filter(Q(city_id=City.objects.get(name__icontains=location),start_date__gte=convert(returndate))|Q(city_id=City.objects.get(name__icontains=location),end_date__lte=convert(pickdate))|Q(city_id=City.objects.get(name__icontains=location),available=True))
-
                 print(convert(returndate))
-            elif request.POST['pickdate']:
-                cars_location=Car.objects.filter(city_id=City.objects.get(name__icontains=location),end_date__lte=convert(pickdate))
-
-            #cars_location=Car.objects.filter(rate=5).delete()
+            elif from_url=="from_order" and (("Petrol" in request.POST and request.POST['Petrol']) or ("Hybrid" in request.POST and request.POST['Hybrid']) or ("Diesel" in request.POST and request.POST['Diesel'])):
+                cars_location=Car.objects.filter(Q(city_id=City.objects.get(name__icontains=location),start_date__gte=convert(returndate))|Q(city_id=City.objects.get(name__icontains=location),end_date__lte=convert(pickdate))|Q(city_id=City.objects.get(name__icontains=location),available=True))
+                if ("Petrol" in request.POST and request.POST['Petrol']) and ("Hybrid" in request.POST and request.POST['Hybrid']):
+                    cars_location=cars_location.filter(Q(fuel_id=FuelType.objects.get(name__icontains=request.POST['Petrol']))|Q(fuel_id=FuelType.objects.get(name__icontains=request.POST['Hybrid'])))
+                elif ("Petrol" in request.POST and request.POST['Petrol']) and ("Diesel" in request.POST and request.POST['Diesel']):
+                    cars_location=cars_location.filter(Q(fuel_id=FuelType.objects.get(name__icontains=request.POST['Petrol']))|Q(fuel_id=FuelType.objects.get(name__icontains=request.POST['Diesel'])))
+                elif ("Diesel" in request.POST and request.POST['Diesel']) and ("Hybrid" in request.POST and request.POST['Hybrid']):
+                    cars_location=cars_location.filter(Q(fuel_id=FuelType.objects.get(name__icontains=request.POST['Diesel']))|Q(fuel_id=FuelType.objects.get(name__icontains=request.POST['Hybrid'])))
+                elif "Petrol" in request.POST and request.POST['Petrol']:
+                    cars_location=cars_location.filter(fuel_id=FuelType.objects.get(name__icontains=request.POST['Petrol']))
+                elif "Hybrid" in request.POST and request.POST['Hybrid']:
+                    cars_location=cars_location.filter(fuel_id=FuelType.objects.get(name__icontains=request.POST['Hybrid']))
+                elif "Diesel" in request.POST and request.POST['Diesel']:
+                    cars_location=cars_location.filter(fuel_id=FuelType.objects.get(name__icontains=request.POST['Diesel']))
+                if "compare" in request.POST and request.POST['compare']:
+                    if request.POST['compare']>30:
+                        cars_location=cars_location.filter(price_hourly__gte=30)
+                    else:
+                        cars_location=cars_location.filter(price_hourly__lte=30)
+            elif "compare" in request.POST and request.POST['compare']:
+                cars_location=Car.objects.filter(Q(city_id=City.objects.get(name__icontains=location),start_date__gte=convert(returndate))|Q(city_id=City.objects.get(name__icontains=location),end_date__lte=convert(pickdate))|Q(city_id=City.objects.get(name__icontains=location),available=True))
+                if request.POST['compare']>'30':
+                    cars_location=cars_location.filter(price_hourly__gte=30)
+                    print(request.POST['compare'])
+                else:
+                    cars_location=cars_location.filter(price_hourly__lte=30)
+            else:
+                cars_location=Car.objects.filter(Q(city_id=City.objects.get(name__icontains=location),start_date__gte=convert(returndate))|Q(city_id=City.objects.get(name__icontains=location),end_date__lte=convert(pickdate))|Q(city_id=City.objects.get(name__icontains=location),available=True))
+                 #cars_location=Car.objects.filter(rate=5).delete()
             context={
                 'cars':cars,
                 'page_object':page,
@@ -161,7 +190,8 @@ def order(request):
                 'citys':citys,
                 'cars_location':cars_location,
                 'order':order,
-                'models':models
+                'models':models,
+                'fuel_types':fuel_type
             }
             return render(request,'ourApp/order.html',context=context)
         except:

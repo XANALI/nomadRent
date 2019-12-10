@@ -29,12 +29,14 @@
                 <div class="col-lg-4">
                     <div class="sidebar-content-wrap">
                         <!-- Single Sidebar Start -->
-                        <form action=""  method="post">
                         <div class="single-sidebar">
                             <h3>For More Informations</h3>
+                            <form action="{% url 'order' %}"  method="post" id="form_1">
                             <div class="book-a-car" style="margin-top:0px">
                                   {% csrf_token %}
                                     <!--== Pick Up Location ==-->
+                                    <input hidden type="text" name="from" value="from_order">
+
                                     <div class="pickup-location book-item">
                                         <h4>PICK-UP LOCATION:</h4>
                                         <select class="custom-select" name="location" placeholder="">
@@ -48,11 +50,11 @@
                                    </div>
                                    <div class="pick-up-date book-item">
                                        <h4>PICK-UP DATE:</h4>
-                                       <input id="startDate" placeholder="Pick Up Date" name="pickdate" value="{{pickdate}}"></input>
+                                       <input id="startDate" placeholder="Pick Up Date" name="pickdate" value="{{pickdate}}" required></input>
 
                                        <div class="return-car">
                                            <h4>Return DATE:</h4>
-                                           <input id="endDate" placeholder="Return Date" name="returndate" value="{{returndate}}"></input>
+                                           <input id="endDate" placeholder="Return Date" name="returndate" value="{{returndate}}" required></input>
                                        </div>
                                    </div>
                                    <!--== Pick Up Location ==-->
@@ -63,6 +65,7 @@
                                    </div>
                                    <!--== Car Choose ==-->
                         </div>
+                        </form>
                         </div>
                         <!-- Single Sidebar End -->
 
@@ -73,41 +76,46 @@
                             <div class="sidebar-body">
                                 <ul class="recent-tips">
                                     <h6 class="text-center">Filter by Fuel Type</h6>
+                                    {% for fuel_type in fuel_types %}
                                     <li class="single-recent-tips">
                                         <div class="recent-tip-thum">
-                                          <input type="checkbox" name="petrol">
+                                          <input type="checkbox"  name="{{fuel_type.name}}" value="{{fuel_type.name}}" form="form_1">
                                         </div>
                                         <div class="recent-tip-body">
-                                            <p style="font-size:15px">Petrol</p>
+                                            <p style="font-size:15px">{{fuel_type.name}}</p>
+                                        </div>
+                                    </li>
+                                    {%endfor%}
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <div class="single-sidebar">
+                            <h3>Filter of car</h3>
+
+                            <div class="sidebar-body">
+                                <ul class="recent-tips">
+                                    <h6 class="text-center">Filter by Price</h6>
+
+                                    <li class="single-recent-tips">
+                                        <div class="recent-tip-thum">
+                                          <input type="radio"  name="compare" value="31" form="form_1">
+                                        </div>
+                                        <div class="recent-tip-body">
+                                            <p style="font-size:15px">More than 30$</p>
                                         </div>
                                     </li>
 
                                     <li class="single-recent-tips">
                                         <div class="recent-tip-thum">
-                                            <input type="checkbox" name="diesel">
+                                          <input type="radio"  name="compare" value="29" form="form_1">
                                         </div>
                                         <div class="recent-tip-body">
-                                          <p style="font-size:15px">Diesel</p>
+                                            <p style="font-size:15px">Less than 30$</p>
                                         </div>
                                     </li>
 
-                                    <li class="single-recent-tips">
-                                      <div class="recent-tip-thum">
-                                          <input type="checkbox" name="electric">
-                                      </div>
-                                      <div class="recent-tip-body">
-                                          <p style="font-size:15px">Electric</p>
-                                      </div>
-                                    </li>
-
-                                    <li class="single-recent-tips">
-                                      <div class="recent-tip-thum">
-                                          <input type="checkbox" name="hybrid">
-                                      </div>
-                                      <div class="recent-tip-body">
-                                          <p style="font-size:15px">Hybrid</p>
-                                      </div>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -128,7 +136,6 @@
                             </div>
                         </div>
                         <!-- Single Sidebar End -->
-                        </form>
                     </div>
                 </div>
                 <!-- Sidebar Area End -->

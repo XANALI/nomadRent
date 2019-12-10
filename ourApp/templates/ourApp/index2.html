@@ -16,6 +16,9 @@
                                 <div class="book-ur-car">
                                     <form action="{% url 'order'%}" style="padding-left:120px" method="post">
                                         {% csrf_token %}
+
+                                        <input hidden type="text" name="from" value="from_index">
+
                                         <div class="pick-location bookinput-item">
                                             <select class="custom-select" name="location" placeholder="">
                                               <option disabled="disabled" selected>Pick Location</option>
@@ -24,6 +27,8 @@
                                               {%endfor%}
                                             </select>
                                         </div>
+
+
 
                                         <div class="pick-date bookinput-item">
                                             <input id="startDate2" name="pickdate" placeholder="Pick Date" required/>
