@@ -266,6 +266,7 @@ def confirmation(request):
             total_price = difference_date.days*c.price_hourly
             c.start_date = pick_date_finally
             c.end_date = return_date_finally
+            c.available = False
             c.save()
             if request.user.is_authenticated:
                 if request.user.bank_card_id.pk == 1 and request.user.license_id.pk == 1:
@@ -282,12 +283,12 @@ def confirmation(request):
                 order = Order()
                 order.car_id = c
                 order.total_price = total_price
-                order.email_address = email_address
                 order.total_price = total_price
                 order.start_date = pick_date_finally
                 order.end_date = return_date_finally
                 if request.user.is_authenticated:
                     order.user_id = SimpleUser.objects.get(pk=request.user.pk)
+                    order.email_address = request.user.email
                     if request.user.bank_card_id.pk == 1 and request.user.license_id.pk == 1:
                         print('request.user.pk')
                         order.bank_card_id = request.user.bank_card_id = bank_card_form.save()
@@ -297,6 +298,7 @@ def confirmation(request):
                         order.bank_card_id = bank_card_form.save()
                         order.license_id = driver_license_form.save()
                 else:
+                    order.email_address = email_address
                     order.bank_card_id = bank_card_form.save()
                     order.license_id = driver_license_form.save()
                     try:
