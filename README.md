@@ -7,9 +7,16 @@ We are team `Zhalgas jmot` and our project `NomadRent`
 - [Contributing](#contributing)
 - [Team](#team)
 - [Contacts](#contacts)
+- [Contacts](#dependence)
 
 ## Installation
 - All the `code` required to get started
+
+## Dependence
+ `PIL` is the Python Imaging Library by Fredrik Lundh and Contributors.
+```
+pip install Pillow
+```
 
 ### Clone
 - Clone this repo to your local machine using `https://github.com/XANALI/nomadRent.git`
