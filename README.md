@@ -3,11 +3,11 @@ We are team `Zhalgas jmot` and our project `NomadRent`
 
 ## Content
 - [Installation](#installation)
+- [Dependence](#dependence)
 - [Features](#features)
 - [Contributing](#contributing)
 - [Team](#team)
 - [Contacts](#contacts)
-- [Contacts](#dependence)
 
 ## Installation
 - All the `code` required to get started
